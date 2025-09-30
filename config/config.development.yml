@@ -3,3 +3,17 @@ rest:
   host: localhost
   port: 8080
   nameSpace: /server
+themes:
+  - name: 'cma'
+# Languages. DSpace Angular holds a message catalog for each of the following languages.
+# When set to active, users will be able to switch to the use of this language in the user interface.
+languages:
+  - code: en
+    label: English
+    active: true
+  - code: el
+    label: Ελληνικά
+    active: true
+  - code: tr
+    label: Türkçe
+    active: true

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { EagerThemeModule as DSpaceEagerThemeModule } from './dspace/eager-theme.module';
+//import { EagerThemeModule as DSpaceEagerThemeModule } from './dspace/eager-theme.module';
 // import { EagerThemeModule as CustomEagerThemeModule } from './custom/eager-theme.module';
-
+import { EagerThemeModule as CMAEagerThemeModule } from './cma/eager-theme.module';
 /**
  * This module bundles the eager theme modules for all available themes.
  * Eager modules contain components that are present on every page (to speed up initial loading)
@@ -12,8 +12,9 @@ import { EagerThemeModule as DSpaceEagerThemeModule } from './dspace/eager-theme
  */
 @NgModule({
   imports: [
-    DSpaceEagerThemeModule,
-    // CustomEagerThemeModule,
+    //DSpaceEagerThemeModule,
+    //CustomEagerThemeModule,
+    CMAEagerThemeModule,
   ],
 })
 export class EagerThemesModule {

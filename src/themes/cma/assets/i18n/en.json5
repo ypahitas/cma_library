@@ -1,7 +1,5 @@
 {
-  // DSpace default: "All of DSpace"
-  "menu.section.browse_global": "Browse DSpace",
-
-  // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "DSpace :: ",
+  "cma.name": "Cyprus Music Archive",
+  "cma.home-news.library": "library",
+  "cma.home.news.explore": "Explore audio and video recordings from different collections",
 }
