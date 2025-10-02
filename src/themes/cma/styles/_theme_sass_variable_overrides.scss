@@ -15,50 +15,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,200;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 $font-family-sans-serif: "Roboto", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$bs-body-font-weight:300;
-
-/*** SEMANTIC COLOR SCHEME ***/
-
-// Gray scale (uncomment the variables that you want to override or that you need to use in this file)
-//$white:    #fff;
-//$gray-100: #f8f9fa;
-//$gray-200: #e9ecef;
-//$gray-300: #dee2e6;
-//$gray-400: #ced4da;
-//$gray-500: #adb5bd;
-//$gray-600: #6c757d;
-//$gray-700: #495057;
-//$gray-800: #343a40;
-//$gray-900: #212529;
-//$black:    #000;
-
-// Other colors (uncomment the variables that you want to override or that you need to use in this file)
-//$blue:    #007bff !default;
-//$indigo:  #6610f2 !default;
-//$purple:  #6f42c1 !default;
-//$pink:    #e83e8c !default;
-//$red:     #dc3545 !default;
-//$orange:  #fd7e14 !default;
-//$yellow:  #ffc107 !default;
-//$green:   #28a745 !default;
-//$teal:    #20c997 !default;
-//$cyan:    #17a2b8 !default;
-
 // Override semantic colors here
 $primary:   #4E4E4E;  // Gray
 $secondary: #353A3C;  // cma secodary As Bootstrap $gray-700
-$success:   #72C4B9;  // Lime
-$info:      #1e6f90;  // Light blue
-$warning:   #ec9433;  // Orange
-$danger:    #cf4444;  // Red
-$light:     #f8f9fa;  // As Bootstrap $gray-100
-$dark:      #43515f;  // Dark blue
+$success:   #72C4B9;  // cma colour
 
 // Add new semantic colors here (you don't need to add existing semantic colors)
 $theme-custom-semantic-colors: (
 );
 
 /*** OTHER BOOTSTRAP VARIABLES ***/
+$font-weight-normal:300;
+$nav-link-font-weight:300;
 
 $min-contrast-ratio: 2.06 !default;
 
@@ -69,15 +37,16 @@ $link-decoration: none;
 $link-hover-color: darken($link-color, 15%);
 $link-hover-decoration: underline;
 
+//Header links
 $ds-navbar-link-color: $primary;
 $ds-navbar-link-color-hover:$link-color;
-
+$ds-header-icon-color:$primary;
+$ds-header-icon-color-hover:$link-color;
 
 $table-accent-bg: #f8f9fa;  // As Bootstrap $gray-100
 $table-hover-bg: #ced4da;   // As Bootstrap $gray-400
 
 $navbar-dark-color: #fff;
-
 
 /*** CUSTOM DSPACE VARIABLES ***/
 
@@ -85,3 +54,4 @@ $ds-home-news-link-color: $link-color;
 
 $ds-breadcrumb-link-color: #154E66 !default;
 $ds-breadcrumb-link-active-color: #040D11 !default;
+
