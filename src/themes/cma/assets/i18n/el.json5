@@ -1,4 +1,7 @@
 {
   "cma.home.news.library": "Cyprus Music Archive Library",
   "cma-home-news-explore": "Explore audio and video recordings from different collections",
+  "repository.title": "CMA Library",
+  "repository.title.prefix": "CMA Library :: ",
+  "home.search-form.placeholder": "Αναζήτηση στο αρχείο...",
 }

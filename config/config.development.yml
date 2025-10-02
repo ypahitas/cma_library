@@ -5,6 +5,28 @@ rest:
   nameSpace: /server
 themes:
   - name: 'cma'
+    headTags:
+    - tagName: link
+      attributes:
+        rel: icon
+        href: assets/cma/images/cropped-AKM_LogoNoText-32x32.jpg
+        sizes: any
+    - tagName: link
+      attributes:
+        rel: apple-touch-icon
+        href: assets/cma/images/cropped-AKM_LogoNoText-180x180.jpg
+homePage:
+  recentSubmissions:
+    # The number of item showing in recent submission components
+    pageSize: 0
+    # Sort record of recent submission
+    sortField: 'dc.date.accessioned'
+  topLevelCommunityList:
+    # No. of communities to list per page on the home page
+    # This will always round to the nearest number from the list of page sizes. e.g. if you set it to 7 it'll use 10
+    pageSize: 0
+  # Enable or disable the Discover filters on the homepage
+  showDiscoverFilters: false
 # Languages. DSpace Angular holds a message catalog for each of the following languages.
 # When set to active, users will be able to switch to the use of this language in the user interface.
 languages:

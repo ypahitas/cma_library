@@ -2206,7 +2206,7 @@
 
   "home.breadcrumbs": "Αρχική",
 
-  "home.search-form.placeholder": "Αναζήτηση στο αποθετήριο...",
+  "home.search-form.placeholder": "Αναζήτηση στο αρχείο...",
 
   "home.title": "Αρχική",
 
@@ -4426,9 +4426,9 @@
 
   "repository.image.logo": "Λογότυπο αποθετηρίου",
 
-  "repository.title": "DSpace Repository",
+  "repository.title": "CMA Library",
 
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "CMA Library :: ",
 
   "resource-policies.add.button": "Προσθήκη",
 

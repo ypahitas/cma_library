@@ -1,5 +1,6 @@
-<div class="home-news-content py-4 px-2 py-sm-5 px-sm-0 mt-ncs mb-4">
+<div class="background-image-container mt-ncs">
   <div class="container">
+    <div class="home-news-content py-4 px-2 py-sm-5 px-sm-0 mt-ncs mb-4">
     <div class="d-flex flex-wrap">
       <div>
         <h1 class="display-2">{{ "cma.home.news.library" | translate }}</h1>
@@ -17,5 +18,14 @@
     <p><a href="https://cyprusmusicarchive.org/en/contact_us_en/"
         target="_blank" role="link" tabindex="0">Contact us</a> to share your collection.
     </p>
-  </div>
+</div>  
+</div>
+  <picture class="background-image">
+    <source type="image/jpg" src="assets/cma/images/bannerPAOK.jpeg">
+    <img alt="" [src]="'assets/cma/images/bannerPAOK.jpeg'"/><!-- without the []="''" Firefox downloads both the fallback and the resolved image -->
+    <!--  
+    <source type="image/jpg" src="assets/cma/images/cma-homepage-03.jpg">
+    <img alt="" [src]="'assets/cma/images/cma-homepage-03.jpg'"/>
+    -->
+  </picture>
 </div>

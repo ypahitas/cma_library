@@ -2206,7 +2206,7 @@
 
   "home.breadcrumbs": "Anasayfa",
 
-  "home.search-form.placeholder": "Depoda ara ...",
+  "home.search-form.placeholder": "Search the archive...",
 
   "home.title": "DSpace Açısal :: Anasayfa",
 
@@ -4426,9 +4426,9 @@
 
   "repository.image.logo": "Repository logo",
 
-  "repository.title": "DSpace Repository",
+  "repository.title": "CMA Library",
 
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "CMA Library :: ",
 
   "resource-policies.add.button": "Ekle",
 
