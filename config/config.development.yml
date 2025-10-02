@@ -39,3 +39,13 @@ languages:
   - code: tr
     label: Türkçe
     active: true
+# Footer Whether the end user agreement is required before users use the repository.
+# If enabled, the user will be required to accept the agreement before they can use the repository.
+# And whether the privacy statement/COAR notify support page should exist or not.
+info:
+  enableEndUserAgreement: true
+  enablePrivacyStatement: false
+  enableCOARNotifySupport: false
+  # Whether to show the cookie consent popup and the cookie settings footer link or not.
+  enableCookieConsentPopup: false
+  enableEndUserAgreement: false

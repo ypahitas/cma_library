@@ -3452,7 +3452,7 @@
 
   "menu.section.browse_community_by_title": "Με τίτλο",
 
-  "menu.section.browse_global": "Όλο το DSpace",
+  "menu.section.browse_global": "Search by...",
 
   "menu.section.browse_global_by_author": "Ανά Συγγραφέα",
 
@@ -7325,4 +7325,10 @@
   "cma-home-news-explore": "Explore audio and video recordings from different collections",
 
   "cma.home.news.library": "Cyprus Music Archive Library",
+
+  "menu.section.collections": "Collections",
+
+  "menu.section.themes": "Themes",
+
+  "footer.link.dspace.prefix": "Powered by",
 }

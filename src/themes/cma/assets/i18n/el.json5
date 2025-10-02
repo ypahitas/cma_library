@@ -4,4 +4,8 @@
   "repository.title": "CMA Library",
   "repository.title.prefix": "CMA Library :: ",
   "home.search-form.placeholder": "Αναζήτηση στο αρχείο...",
+  "menu.section.browse_global": "Search by...",
+  "menu.section.collections": "Collections",
+  "menu.section.themes": "Themes",
+  "footer.link.dspace.prefix": "Powered by",
 }

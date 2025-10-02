@@ -3452,7 +3452,7 @@
 
   "menu.section.browse_community_by_title": "Başlığa göre",
 
-  "menu.section.browse_global": "Tümü",
+  "menu.section.browse_global": "Search by...",
 
   "menu.section.browse_global_by_author": "Yazara göre",
 
@@ -7323,4 +7323,10 @@
   "cma-home-news-library": "library",
 
   "cma-home-news-explore": "Explore audio and video recordings from different collections",
+
+  "menu.section.collections": "Collections",
+
+  "menu.section.themes": "Themes",
+
+  "footer.link.dspace.prefix": "Powered by",
 }
