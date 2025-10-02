@@ -48,4 +48,3 @@ info:
   enableCOARNotifySupport: false
   # Whether to show the cookie consent popup and the cookie settings footer link or not.
   enableCookieConsentPopup: false
-  enableEndUserAgreement: false

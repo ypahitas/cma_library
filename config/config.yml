@@ -3,27 +3,3 @@ rest:
   host: sandbox.dspace.org
   port: 443
   nameSpace: /server
-themes:
-  - name: 'cma'
-    headTags:
-    - tagName: link
-      attributes:
-        rel: icon
-        href: assets/cma/images/cropped-AKM_LogoNoText-32x32.jpg
-        sizes: any
-    - tagName: link
-      attributes:
-        rel: apple-touch-icon
-        href: assets/cma/images/cropped-AKM_LogoNoText-180x180.jpg
-# Languages. DSpace Angular holds a message catalog for each of the following languages.
-# When set to active, users will be able to switch to the use of this language in the user interface.
-languages:
-  - code: en
-    label: English
-    active: true
-  - code: el
-    label: Ελληνικά
-    active: true
-  - code: tr
-    label: Türkçe
-    active: true
