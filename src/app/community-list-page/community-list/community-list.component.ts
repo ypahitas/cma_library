@@ -110,7 +110,6 @@ export class CommunityListComponent implements OnInit, OnDestroy {
    * @param node  Node we want to expand
    */
   toggleExpanded(node: FlatNode) {
-    console.log(this.dataSource);
     this.loadingNode = node;
     if (node.isExpanded) {
       this.expandedNodes = this.expandedNodes.filter((node2) => node2.id !== node.id);
