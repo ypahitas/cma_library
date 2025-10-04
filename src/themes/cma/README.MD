@@ -1,0 +1,1 @@
+Changed the app-routes.ts to edit 'commmunity-list' to 'collection-list'

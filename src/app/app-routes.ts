@@ -76,7 +76,7 @@ export const APP_ROUTES: Route[] = [
         },
       },
       {
-        path: 'community-list',
+        path: 'collection-list',
         loadChildren: () => import('./community-list-page/community-list-page-routes')
           .then((m) => m.ROUTES),
         canActivate: [endUserAgreementCurrentUserGuard],
