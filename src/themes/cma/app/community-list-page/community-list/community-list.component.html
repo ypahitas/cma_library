@@ -10,7 +10,7 @@
               <a  class="card-link btn btn-primary mt-auto" href="{{collection.route}}">{{ 'collections.explore' | translate }}</a>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <small class="text-muted"><span>{{collection.payload.archivedItemsCount}}</span><span> {{'browse.metadata.map.count.items'| translate }}</span></small>
             </div>
           </div>  
         </div>      

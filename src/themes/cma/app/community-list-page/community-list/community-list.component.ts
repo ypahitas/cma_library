@@ -17,6 +17,7 @@ import { TruncatableComponent } from '../../../../../app/shared/truncatable/trun
 import { TruncatablePartComponent } from '../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
 import { Collection } from 'src/app/core/shared/collection.model';
 import { Bitstream } from 'src/app/core/shared/bitstream.model';
+import { HALEndpointService } from 'src/app/core/shared/hal-endpoint.service';
 
 @Component({
   selector: 'ds-themed-community-list',
@@ -46,6 +47,7 @@ export class CommunityListComponent extends BaseComponent {
     protected http: HttpClient,
     protected communityListService: CommunityListService,
     public dsoNameService: DSONameService,
+    protected halService: HALEndpointService,
     private cd: ChangeDetectorRef,
   ) {
     //call parent constructor
@@ -75,6 +77,7 @@ export class CommunityListComponent extends BaseComponent {
             if (communityUncasted.payload instanceof Collection){
               const collection: Collection = communityUncasted.payload as Collection;
               this.getCollectionLogo(collection);
+              this.getNumberOfItemsInCollection(collection);
             }
           }
         }
@@ -98,5 +101,23 @@ export class CommunityListComponent extends BaseComponent {
         }
       });
     }
+  }
+  //hacky way to get number of items in Collection
+  getNumberOfItemsInCollection(collection: Collection) {
+    //sample URL "href" : "http://localhost:8080/server/api/discover/search/objects?scope=1d6be871-990f-4af7-a50a-68ac1eb12c04&configuration=collection"
+    const path = '/discover';
+    this.halService.getEndpoint(path).subscribe(urlPrefix => {
+      urlPrefix += '/search/objects?configuration=collection&scope=';
+      const url = urlPrefix.concat(collection.id);
+      this.http.get<any>(url).subscribe(response => {
+        //Get it from the JSON response structure
+        const totalElements = response._embedded?.searchResult?.page?.totalElements;
+        collection.archivedItemsCount = totalElements;
+        //Hacky way to update screen
+        //TODO figure out a way to show value on screen
+        //update UI
+        this.cd.markForCheck();
+      });
+    }) ;
   }
 }
