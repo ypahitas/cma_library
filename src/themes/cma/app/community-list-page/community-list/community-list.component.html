@@ -1,6 +1,19 @@
-    <h2>Collections</h2>
-    <ul>
-      <li *ngFor="let collection of collectionList">
-        {{collection.name}}
-      </li>
-    </ul>
+<!-- If we go back to promise variable <div *ngIf="communityList$ | async as communityList">-->
+  <div class="card-deck">
+    <ng-container *ngFor="let collection of communityListArray">
+      <div class="col-md pb-2" *ngIf="collection.payload.type === 'collection'">
+        <div class="card">
+          <img class="card-img-top" id="{{collection.id}}" src="" alt="Collection logo">
+          <div class="card-body">            
+            <h5 class="card-title">{{collection.name}}</h5>
+            <p class="card-text">{{collection.payload.metadata["dc.description"][0].value}}</p>
+            <a href="{{collection.route}}" class="btn btn-primary">{{ 'collections.explore' | translate }}</a>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Archived items:</small>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+<!--</div>-->

@@ -1,28 +1,35 @@
 import { CdkTreeModule } from '@angular/cdk/tree';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { CommunityListService } from 'src/app/community-list-page/community-list-service';
+import { FlatNode } from 'src/app/community-list-page/flat-node.model';
 import { DSONameService } from 'src/app/core/breadcrumbs/dso-name.service';
+import { ComcolPageLogoComponent } from 'src/app/shared/comcol/comcol-page-logo/comcol-page-logo.component';
 
 import { CommunityListComponent as BaseComponent } from '../../../../../app/community-list-page/community-list/community-list.component';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
 import { TruncatableComponent } from '../../../../../app/shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
-import { CollectionDataCMAService } from '../collection-data-cma.service';
-import { Observable } from 'rxjs/internal/Observable';
 import { Collection } from 'src/app/core/shared/collection.model';
+import { Bitstream } from 'src/app/core/shared/bitstream.model';
 
 @Component({
   selector: 'ds-themed-community-list',
-  // styleUrls: ['./community-list.component.scss'],
+  styleUrls: ['./community-list.component.scss'],
   templateUrl: './community-list.component.html',
   //templateUrl: '../../../../../app/community-list-page/community-list/community-list.component.html',
   standalone: true,
   imports: [
     AsyncPipe,
     CdkTreeModule,
+    ComcolPageLogoComponent,
+    NgFor,
+    NgIf,
     RouterLink,
     ThemedLoadingComponent,
     TranslateModule,
@@ -31,13 +38,15 @@ import { Collection } from 'src/app/core/shared/collection.model';
   ],
 })
 export class CommunityListComponent extends BaseComponent {
-  protected collectionList: Collection[];
-
+  communityList$: Observable<FlatNode[]>;
+  communityListArray: FlatNode[];
+  collectionTemp: Collection;
 
   constructor(
+    protected http: HttpClient,
     protected communityListService: CommunityListService,
-    protected collectionDataCMAService: CollectionDataCMAService,
     public dsoNameService: DSONameService,
+    private cd: ChangeDetectorRef,
   ) {
     //call parent constructor
     super(communityListService,dsoNameService);
@@ -47,14 +56,47 @@ export class CommunityListComponent extends BaseComponent {
 
   ngOnInit(){
     super.ngOnInit();
-    this.collectionDataCMAService.getCollections().subscribe(response => {
-      if (this.collectionDataCMAService.checkResponseIntegrity(response)){
-        const collectionsString = this.collectionDataCMAService.getNested(response,['_embedded','collections']);
-        this.collectionList = collectionsString as Collection[];
+    //connect to the data to get an observable
+    this.communityList$ =  this.dataSource.connect(null);
+    this.communityList$.subscribe(response => {
+      //If it's empty toggle it once to fetch children - dSpace tree structure workaround
+      if (response.length > 0){
+        if (!this.communityListArray) {
+          //save the value so that we don't go in this if again
+          this.communityListArray = response;
+          this.toggleExpanded(this.communityListArray[0]);
+        } else {
+          //now we got our full list for the first community. CMA will only be 1 community with many collections
+          this.communityListArray = response;
+          //trigger UI for update
+          this.cd.markForCheck();
+          //Now get their logos. CMA work around
+          for (const communityUncasted of this.communityListArray) {
+            if (communityUncasted.payload instanceof Collection){
+              const collection: Collection = communityUncasted.payload as Collection;
+              this.getCollectionLogo(collection);
+            }
+          }
+        }
       }
     });
   }
 
-
-
+  //CMA - dspace image handling is not easy so did my own
+  getCollectionLogo(collection: Collection){
+    const logoInfoURL = collection._links.logo.href;
+    if (logoInfoURL){
+      this.http.get<Bitstream>(logoInfoURL).subscribe(response => {
+        if (response){
+          //getting image via collection id and updating it's source
+          const imgElement = document.getElementById(collection.id) as HTMLImageElement | null;
+          if (imgElement) {
+            imgElement.src = response._links.content.href;
+          }
+          //update UI
+          this.cd.markForCheck();
+        }
+      });
+    }
+  }
 }
