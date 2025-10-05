@@ -1,5 +1,5 @@
 .card-img-top{
-    height: 15vw; 
+    height: var(--ds-comcol-logo-max-height);
     object-fit: cover;
 }
 .card-link{
