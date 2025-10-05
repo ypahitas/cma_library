@@ -18,6 +18,6 @@ import { CollectionListElementComponent as BaseComponent } from '../../../../../
     RouterLink,
   ],
 })
-@listableObjectComponent(Collection, ViewMode.ListElement, Context.Any, 'custom')
+@listableObjectComponent(Collection, ViewMode.ListElement, Context.Any, 'cma')
 export class CollectionListElementComponent extends BaseComponent {
 }

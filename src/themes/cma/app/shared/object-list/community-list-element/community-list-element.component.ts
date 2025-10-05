@@ -18,6 +18,6 @@ import { CommunityListElementComponent as BaseComponent } from '../../../../../.
     RouterLink,
   ],
 })
-@listableObjectComponent(Community, ViewMode.ListElement, Context.Any, 'custom')
+@listableObjectComponent(Community, ViewMode.ListElement, Context.Any, 'cma')
 export class CommunityListElementComponent extends BaseComponent {
 }

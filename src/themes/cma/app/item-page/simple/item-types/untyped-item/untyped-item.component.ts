@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { Context } from '../../../../../../../app/core/shared/context.model';
@@ -27,17 +27,17 @@ import { MetadataFieldWrapperComponent } from '../../../../../../../app/shared/m
 import { listableObjectComponent } from '../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ThemedResultsBackButtonComponent } from '../../../../../../../app/shared/results-back-button/themed-results-back-button.component';
 import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
+import { RouteService } from 'src/app/core/services/route.service';
 
-@listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'custom')
+@listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'cma')
 @Component({
   selector: 'ds-untyped-item',
   // styleUrls: ['./untyped-item.component.scss'],
   styleUrls: [
     '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component.scss',
   ],
-  // templateUrl: './untyped-item.component.html',
-  templateUrl:
-    '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component.html',
+  templateUrl: './untyped-item.component.html',
+  // templateUrl:     '../../../../../../../app/item-page/simple/item-types/untyped-item/untyped-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -63,4 +63,8 @@ import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/the
   ],
 })
 export class UntypedItemComponent extends BaseComponent {
+  constructor(protected routeService: RouteService, protected router: Router){
+    super(routeService, router);
+    console.log('got in cma untyped component');
+  }
 }

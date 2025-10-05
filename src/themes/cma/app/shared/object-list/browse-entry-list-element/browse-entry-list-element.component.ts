@@ -20,6 +20,6 @@ import { BrowseEntryListElementComponent as BaseComponent } from '../../../../..
     RouterLink,
   ],
 })
-@listableObjectComponent(BrowseEntry, ViewMode.ListElement, Context.Any, 'custom')
+@listableObjectComponent(BrowseEntry, ViewMode.ListElement, Context.Any, 'cma')
 export class BrowseEntryListElementComponent extends BaseComponent {
 }
