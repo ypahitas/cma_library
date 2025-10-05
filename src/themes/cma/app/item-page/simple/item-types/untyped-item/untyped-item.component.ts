@@ -63,8 +63,4 @@ import { RouteService } from 'src/app/core/services/route.service';
   ],
 })
 export class UntypedItemComponent extends BaseComponent {
-  constructor(protected routeService: RouteService, protected router: Router){
-    super(routeService, router);
-    console.log('got in cma untyped component');
-  }
 }
