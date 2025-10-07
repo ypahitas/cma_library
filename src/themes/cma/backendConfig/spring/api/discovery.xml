@@ -199,7 +199,6 @@
                 <ref bean="searchFilterContentInOriginalBundle"/>
                 <!-- <ref bean="searchFilterHasGeospatialMetadata"/> -->
                 <ref bean="searchFilterEntityType"/>
-                <ref bean="" />
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
