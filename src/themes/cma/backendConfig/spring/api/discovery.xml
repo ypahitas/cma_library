@@ -196,9 +196,7 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <!-- <ref bean="searchFilterHasGeospatialMetadata"/> -->
-                <ref bean="searchFilterEntityType"/>
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -210,12 +208,9 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
                 <ref bean="searchFilterHasGeospatialMetadata" />
-                <ref bean="searchFilterEntityType"/>
-                <ref bean="searchFilterAccessStatus" />
                 <ref bean="searchFilterIsAuthorOfPublicationRelation"/>
                 <ref bean="searchFilterIsProjectOfPublicationRelation"/>
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
@@ -379,8 +374,6 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
-                <ref bean="searchFilterEntityType"/>
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -392,10 +385,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterIsAuthorOfPublicationRelation"/>
                 <ref bean="searchFilterIsProjectOfPublicationRelation"/>
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
@@ -517,8 +508,6 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
-                <ref bean="searchFilterEntityType"/>
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -530,10 +519,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterIsAuthorOfPublicationRelation"/>
                 <ref bean="searchFilterIsProjectOfPublicationRelation"/>
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
@@ -657,8 +644,6 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterNotifyRelation" />
                 <ref bean="searchFilterNotifyEndorsement" />
                 <ref bean="searchFilterNotifyReview" />
@@ -675,10 +660,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterIsAuthorOfPublicationRelation"/>
                 <ref bean="searchFilterIsProjectOfPublicationRelation"/>
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
@@ -697,7 +680,6 @@
                         <ref bean="sortScore" />
                         <ref bean="sortTitle" />
                         <ref bean="sortDateIssued" />
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1179,8 +1161,6 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
-                <ref bean="searchFilterEntityType"/>
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -1192,10 +1172,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterIsAuthorOfPublicationRelation"/>
                 <ref bean="searchFilterIsProjectOfPublicationRelation"/>
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
@@ -1211,7 +1189,6 @@
                         <ref bean="sortScore" />
                         <ref bean="sortTitle" />
                         <ref bean="sortDateIssued" />
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1249,8 +1226,6 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
-                <ref bean="searchFilterEntityType"/>
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -1262,10 +1237,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <ref bean="searchFilterContentInOriginalBundle"/>
                 <ref bean="searchFilterFileNameInOriginalBundle" />
                 <ref bean="searchFilterFileDescriptionInOriginalBundle" />
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterIsAuthorOfPublicationRelation"/>
                 <ref bean="searchFilterIsProjectOfPublicationRelation"/>
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
@@ -1281,7 +1254,6 @@
                         <ref bean="sortScore" />
                         <ref bean="sortTitle" />
                         <ref bean="sortDateIssued" />
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1344,7 +1316,6 @@
                         <ref bean="sortFamilyName"/>
                         <ref bean="sortGivenName"/>
                         <ref bean="sortBirthDate"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1406,7 +1377,6 @@
                         <ref bean="sortFamilyName"/>
                         <ref bean="sortGivenName"/>
                         <ref bean="sortBirthDate"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1579,7 +1549,6 @@
                         <ref bean="sortOrganizationAddressCountry"/>
                         <ref bean="sortOrganizationAddressLocality"/>
                         <ref bean="sortOrganizationFoundingDate"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1643,7 +1612,6 @@
                         <ref bean="sortOrganizationAddressCountry"/>
                         <ref bean="sortOrganizationAddressLocality"/>
                         <ref bean="sortOrganizationFoundingDate"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1704,7 +1672,6 @@
                         <ref bean="sortPublicationIssueNumber"/>
                         <ref bean="sortTitle"/>
                         <ref bean="sortCreativeWorkDatePublished"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1764,7 +1731,6 @@
                         <ref bean="sortPublicationIssueNumber"/>
                         <ref bean="sortTitle"/>
                         <ref bean="sortCreativeWorkDatePublished"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1824,7 +1790,6 @@
                         <ref bean="sortPublicationVolumeNumber"/>
                         <ref bean="sortTitle"/>
                         <ref bean="sortCreativeWorkDatePublished"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1883,7 +1848,6 @@
                         <ref bean="sortPublicationVolumeNumber"/>
                         <ref bean="sortTitle"/>
                         <ref bean="sortCreativeWorkDatePublished"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -1996,7 +1960,6 @@
                         <ref bean="sortScore" />
                         <ref bean="sortTitle"/>
                         <ref bean="sortCreativeWorkDatePublished"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -2055,7 +2018,6 @@
                         <ref bean="sortScore" />
                         <ref bean="sortTitle"/>
                         <ref bean="sortCreativeWorkDatePublished"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
@@ -2095,13 +2057,11 @@
             <list>
                 <ref bean="searchFilterOrganizationAddressCountry"/>
                 <ref bean="searchFilterJobtitle"/>
-                <ref bean="searchFilterEntityType"/>
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
         <property name="searchFilters">
             <list>
-                <ref bean="searchFilterEntityType"/>
                 <ref bean="searchFilterOrganizationLegalName"/>
                 <ref bean="searchFilterOrganizationAddressCountry"/>
                 <ref bean="searchFilterOrganizationAddressLocality"/>
@@ -2127,7 +2087,6 @@
                         <ref bean="sortOrganizationAddressCountry"/>
                         <ref bean="sortOrganizationAddressLocality"/>
                         <ref bean="sortOrganizationFoundingDate"/>
-                        <ref bean=""/>
                         <ref bean="sortFamilyName"/>
                         <ref bean="sortGivenName"/>
                         <ref bean="sortBirthDate"/>
@@ -2186,7 +2145,6 @@
                         <ref bean="sortOrganizationAddressCountry"/>
                         <ref bean="sortOrganizationAddressLocality"/>
                         <ref bean="sortOrganizationFoundingDate"/>
-                        <ref bean=""/>
                     </list>
                 </property>
             </bean>
