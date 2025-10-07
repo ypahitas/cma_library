@@ -196,7 +196,9 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
-                <!-- <ref bean="searchFilterHasGeospatialMetadata"/> -->
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterHasGeospatialMetadata"/>
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -217,6 +219,8 @@
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
                 <ref bean="searchFilterGeospatialPoint"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -374,6 +378,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />   
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -392,6 +398,8 @@
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -508,6 +516,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterType" />   
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -526,6 +536,8 @@
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -670,6 +682,8 @@
                 <ref bean="searchFilterNotifyRelation" />
                 <ref bean="searchFilterNotifyEndorsement" />
                 <ref bean="searchFilterNotifyReview" />
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -786,6 +800,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -794,6 +809,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -862,6 +878,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -870,6 +887,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
             </list>
         </property>
@@ -938,6 +956,7 @@
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterSubmitter" />
             </list>
         </property>
@@ -946,6 +965,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterSubmitter" />
             </list>
@@ -1013,6 +1033,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterSubmitter" />
             </list>
@@ -1022,6 +1043,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterSubmitter" />
             </list>
@@ -1086,6 +1108,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterSubmitter" />
                 <ref bean="searchFilterSupervision" />
@@ -1096,6 +1119,7 @@
             <list>
                 <ref bean="searchFilterObjectNamedType" />
                 <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
                 <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterSubmitter" />
                 <ref bean="searchFilterSupervision" />
@@ -1161,6 +1185,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterType" />   
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -1179,6 +1205,8 @@
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1226,6 +1254,8 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+                <ref bean="searchFilterType" />   
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!-- Set TagCloud configuration per discovery configuration -->
@@ -1244,6 +1274,8 @@
                 <ref bean="searchFilterIsOrgUnitOfPublicationRelation"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
                 <ref bean="searchFilterIsJournalOfPublicationRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1661,6 +1693,8 @@
                 <ref bean="searchFilterCreativeWorkKeywords"/>
                 <ref bean="searchFilterCreativeWorkDatePublished"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1720,6 +1754,8 @@
                 <ref bean="searchFilterCreativeWorkKeywords"/>
                 <ref bean="searchFilterCreativeWorkDatePublished"/>
                 <ref bean="searchFilterIsPublicationOfJournalIssueRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1779,6 +1815,8 @@
                 <ref bean="searchFilterCreativeWorkDatePublished"/>
                 <ref bean="searchFilterIsIssueOfJournalVolumeRelation"/>
                 <ref bean="searchFilterIsJournalVolumeRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1837,6 +1875,8 @@
                 <ref bean="searchFilterCreativeWorkDatePublished"/>
                 <ref bean="searchFilterIsIssueOfJournalVolumeRelation"/>
                 <ref bean="searchFilterIsJournalVolumeRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1950,6 +1990,8 @@
                 <ref bean="searchFilterCreativeWorkEditor"/>
                 <ref bean="searchFilterIsIssueOfJournalVolumeRelation"/>
                 <ref bean="searchFilterIsVolumeOfJournalRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2008,6 +2050,8 @@
                 <ref bean="searchFilterCreativeWorkEditor"/>
                 <ref bean="searchFilterIsIssueOfJournalVolumeRelation"/>
                 <ref bean="searchFilterIsVolumeOfJournalRelation"/>
+                <ref bean="searchFilterType" />
+                <ref bean="searchFilterMime" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -2693,6 +2737,14 @@
         <property name="metadataFields">
             <list>
                 <value>dc.type</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="searchFilterMime" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="itemmime" />
+        <property name="metadataFields">
+            <list>
+                <value>dc.format.mimetype</value>
             </list>
         </property>
     </bean>

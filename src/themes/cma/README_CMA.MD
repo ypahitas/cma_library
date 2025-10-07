@@ -6,4 +6,4 @@
 
 - Changed the discoveryConfiguration.xml for the different search filters [dspace]/config/spring/api/discovery.xml
     - see backendConfig subfolder
-        
+    - Then you need to re index solr /dspace/bin/dspace index-discovery -b         
