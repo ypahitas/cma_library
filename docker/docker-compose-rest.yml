@@ -39,6 +39,8 @@ services:
       # proxies.trusted.ipranges: This setting is required for a REST API running in Docker to trust requests 
       # from the host machine. This IP range MUST correspond to the 'dspacenet' subnet defined above.
       proxies__P__trusted__P__ipranges: '172.23.0'
+      #CMA changes to remove browse by vocabularies
+      # webui__P__browse__P__vocabularies__P__disabled: srsc
       LOGGING_CONFIG: /dspace/config/log4j2-container.xml
     image: "${DOCKER_REGISTRY:-docker.io}/${DOCKER_OWNER:-dspace}/dspace:${DSPACE_VER:-latest-test}"
     depends_on:
