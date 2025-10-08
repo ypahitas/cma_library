@@ -24,7 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class CMACuratedSubjectsComponent implements OnInit {
 
-  public urlPrefix = '/browse/subject?value=';
+  public urlPrefix = '/browse/subject';
   public curatedSubjects;
 
   constructor() {
