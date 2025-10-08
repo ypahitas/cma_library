@@ -26,6 +26,7 @@ import { BrowseByDateComponent } from './app/browse-by/browse-by-date/browse-by-
 import { BrowseByMetadataComponent } from './app/browse-by/browse-by-metadata/browse-by-metadata.component';
 import { BrowseByTaxonomyComponent } from './app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component';
 import { BrowseByTitleComponent } from './app/browse-by/browse-by-title/browse-by-title.component';
+import { CMACuratedSubjectsComponent } from './app/cma-curated-subjects-page/cma-curated-subjects.component';
 import { CollectionPageComponent } from './app/collection-page/collection-page.component';
 import { EditItemTemplatePageComponent } from './app/collection-page/edit-item-template-page/edit-item-template-page.component';
 import { CommunityListComponent } from './app/community-list-page/community-list/community-list.component';
@@ -209,6 +210,7 @@ const DECLARATIONS = [
   SubmissionSectionContainerComponent,
   SubmissionFormFooterComponent,
   SubmissionFormComponent,
+  CMACuratedSubjectsComponent,
 ];
 
 @NgModule({
