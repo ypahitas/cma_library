@@ -14,3 +14,4 @@
     -"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --remote-debugging-port=9222
 - Some file formats are not recognised out of the box in dSpace (e.g. m4a)
     - Need to go login the admin panel ->registries->formats and add the extensions under the appropriate mime type e.g. m4a goes under audio/mpeg
+- Submission page is controlled via sumbission-forms.xml in BackendConfig
