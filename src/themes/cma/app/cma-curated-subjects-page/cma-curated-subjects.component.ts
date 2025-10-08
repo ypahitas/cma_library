@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,7 +6,6 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
 
 /**
  * This component representing the `PageNotFound` DSpace page.
@@ -17,19 +17,24 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.Default,
   standalone: true,
   imports: [
+    CommonModule,
     RouterLink,
     TranslateModule,
   ],
 })
 export class CMACuratedSubjectsComponent implements OnInit {
 
-  /**
-   * Initialize instance variables
-   *
-   * @param {AuthService} authservice
-   * @param {ServerResponseService} responseService
-   */
+  public urlPrefix = '/browse/subject?value=';
+  public curatedSubjects;
+
   constructor() {
+    //CMA hardcoded for now . Need to see how to expose via config
+    this. curatedSubjects = [
+      { keyword:'Instruments',translationKey:'cma.theme.instruments' },
+      { keyword:'Songs',translationKey:'cma.theme.songs' } ,
+      { keyword:'Tsiattista', translationKey:'cma.theme.tsiattista' } ,
+      { keyword:'Fones', translationKey:'cma.theme.fones' }, 
+    ];
   }
 
 

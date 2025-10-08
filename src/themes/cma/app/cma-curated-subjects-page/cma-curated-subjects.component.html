@@ -1,5 +1,17 @@
-<div class="page-not-found container">
-  <h1>Yiannis</h1>
+<div class="curated-subjects">
+<!-- If we go back to promise variable <div *ngIf="communityList$ | async as communityList">-->
+  <div class="row row-cols-2 row-cols-md-3">
+    <ng-container *ngFor="let subject of curatedSubjects">
+        <div class="col-md pb-2">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">            
+              <a  class="card-link btn btn-primary mt-auto" [routerLink]="[urlPrefix, subject.keyword]">{{subject.translationKey | translate }}</a>
+            </div>
+          </div>  
+        </div>      
+    </ng-container>
+  </div>
+<!--</div>-->
   <br/>
   <p class="text-center">
     <a routerLink="/browse/subject" class="btn btn-primary" role="button" tabindex="0">{{"dynamic-list.load-more" | translate}}</a>
