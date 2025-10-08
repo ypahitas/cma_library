@@ -53,3 +53,36 @@ mediaViewer:
   video: true
 browseBy:
   showThumbnails: false
+# Geospatial Map display options
+geospatialMapViewer:
+  # Which fields to use for parsing as geospatial points in search maps
+  # (note, the item page field component allows any field(s) to be used
+  # and is set as an input when declaring the component)
+  spatialMetadataFields:
+    - 'dcterms.spatial'
+  # Which discovery configuration to use for 'geospatial search', used
+  # in the browse map
+  spatialFacetDiscoveryConfiguration: 'geospatial'
+  # Which filter / facet name to use for faceted geospatial search
+  # used in the browse map
+  spatialPointFilterName: 'point'
+  # Whether item page geospatial metadata should be displayed
+  # (assumes they are wrapped in a test for this config in the template as
+  # per the default templates supplied with DSpace for untyped-item and publication)
+  enableItemPageFields: true
+  # Whether the browse map should be enabled and included in the browse menu
+  enableBrowseMap: true
+  # Whether a 'map view' mode should be included alongside list and grid views
+  # in search result pages
+  enableSearchViewMode: true
+  # The tile provider(s) to use for the map tiles drawn in the leaflet maps.
+  # (see https://leaflet-extras.github.io/leaflet-providers/preview/) for a full list
+  tileProviders:
+    - 'CartoDB.Positron'
+  # Starting centre point for the map, as lat and lng coordinates. This is useful
+  # to set the centre of the map when the map is first loaded and if there are no
+  # points, shapes or markers to display.
+  # Defaults to the centre of Istanbul
+  defaultCentrePoint:
+    lat: 35.1264
+    lng: 33.4299
