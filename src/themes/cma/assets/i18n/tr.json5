@@ -17,4 +17,8 @@
   "cma.theme.instruments":"Instruments",
   "cma.theme.tsiattista":"Tsiattista",
   "cma.theme.songs":"Songs",
+  "item.page.author": "Featured Person",
+  "search.filters.applied.f.author": "Featured Person",
+  "item.select.table.author": "Featured Person",
+  "search.filters.filter.author.head": "Featured Person",
 }

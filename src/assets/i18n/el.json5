@@ -2890,7 +2890,7 @@
 
   "item.page.abstract": "Περίληψη",
 
-  "item.page.author": "Author",
+  "item.page.author": "Featured Person",
 
   "item.page.authors": "Συγγραφείς",
 
@@ -3080,7 +3080,7 @@
 
   "item.select.table.deselect": "Deselect item",
 
-  "item.select.table.author": "Συγγραφέας",
+  "item.select.table.author": "Featured Person",
 
   "item.select.table.collection": "Συλλογή",
 
@@ -4570,7 +4570,7 @@
 
   "search.filters.applied.f.title": "Title",
 
-  "search.filters.applied.f.author": "Συγγραφέας",
+  "search.filters.applied.f.author": "Featured Person",
 
   "search.filters.applied.f.dateIssued.max": "Ημερομηνία λήξης",
 
@@ -4630,7 +4630,7 @@
 
   "search.filters.filter.title.label": "Search Title",
 
-  "search.filters.filter.author.head": "Συγγραφέας",
+  "search.filters.filter.author.head": "Featured Person",
 
   "search.filters.filter.author.placeholder": "Όνομα συγγραφέα",
 

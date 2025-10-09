@@ -2890,7 +2890,7 @@
 
   "item.page.abstract": "Abstract",
 
-  "item.page.author": "Author",
+  "item.page.author": "Featured Person",
 
   "item.page.authors": "Authors",
 
@@ -3080,7 +3080,7 @@
 
   "item.select.table.deselect": "Deselect item",
 
-  "item.select.table.author": "Author",
+  "item.select.table.author": "Featured Person",
 
   "item.select.table.collection": "Collection",
 
@@ -4570,7 +4570,7 @@
 
   "search.filters.applied.f.title": "Title",
 
-  "search.filters.applied.f.author": "Author",
+  "search.filters.applied.f.author": "Featured Person",
 
   "search.filters.applied.f.dateIssued.max": "End date",
 
@@ -4630,7 +4630,7 @@
 
   "search.filters.filter.title.label": "Search Title",
 
-  "search.filters.filter.author.head": "Author",
+  "search.filters.filter.author.head": "Featured Person",
 
   "search.filters.filter.author.placeholder": "Author name",
 
