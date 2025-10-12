@@ -1371,24 +1371,28 @@
 
         <value-pairs value-pairs-name="common_types" dc-term="type">           
             <pair>
-                <displayed-value>Image</displayed-value>
+                <displayed-value>[type.image]</displayed-value>
                 <stored-value>Image</stored-value>
             </pair> 
             <pair>
-                <displayed-value>Recording, music</displayed-value>
-                <stored-value>Recording, music</stored-value>
+                <displayed-value>[type.interview.recording]</displayed-value>
+                <stored-value>Interview, recording</stored-value>
             </pair>
             <pair>
-                <displayed-value>Recording, interview</displayed-value>
-                <stored-value>Recording, interview</stored-value>
+                <displayed-value>[type.interview.video]</displayed-value>
+                <stored-value>Interview, video</stored-value>
             </pair>
             <pair>
-                <displayed-value>Video, music</displayed-value>
-                <stored-value>Video, music</stored-value>
+                <displayed-value>[type.music.recording]</displayed-value>
+                <stored-value>Music, recording</stored-value>
+            </pair>            
+            <pair>
+                <displayed-value>[type.music.video]</displayed-value>
+                <stored-value>Music, video</stored-value>
             </pair>
             <pair>
-                <displayed-value>Video, interview</displayed-value>
-                <stored-value>Video, interview</stored-value>
+                <displayed-value>[type.other]</displayed-value>
+                <stored-value>Other</stored-value>
             </pair>
         </value-pairs>
 
