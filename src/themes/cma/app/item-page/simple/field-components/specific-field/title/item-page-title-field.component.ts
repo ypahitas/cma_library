@@ -25,6 +25,7 @@ export class ItemPageTitleFieldComponent extends BaseComponent {
   }
 
   //CMA code because it seems dspace angular is ignoring metadata language codes
+  //Dspace needs to add it in the dsoName service method GetHighlights? or getname
   public getTranslatedTitle(){
     const defaultName: string = this.dsoNameService.getName(this.item);
     if (this.item){
