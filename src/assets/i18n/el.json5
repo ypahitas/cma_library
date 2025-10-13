@@ -7359,4 +7359,16 @@
   "type.music.video": "Music, videoEL",
 
   "type.other": "Other",
+
+  "search.filters.itemtype.interview.recording": "Συνέντευξη, ηχογράφηση",
+
+  "search.filters.itemtype.interview.video": "Συνέντευξη, βίντεο",
+
+  "search.filters.itemtype.music.recording": "Music, ηχογράφηση",
+
+  "search.filters.itemtype.music.video": "Μουσική, βίντεο",
+
+  "search.filters.itemtype.other": "Άλλα",
+
+  "search.filters.subject.kalamatiano": "Καλαματιανό",
 }

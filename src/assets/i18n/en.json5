@@ -7348,13 +7348,23 @@
 
   "cma.theme.fones": "Fones",
 
-  "type.interview.recording": "Interview, recording",
+  "type.interview.recording": "Interview, recordingEN",
 
-  "type.interview.video": "Interview, video",
+  "type.interview.video": "Interview, videoEN",
 
-  "type.music.recording": "Music, recording",
+  "type.music.recording": "Music, recordingEN",
 
-  "type.music.video": "Music, video",
+  "type.music.video": "Music, videoEN",
 
   "type.other": "Other",
+
+  "search.filters.itemtype.interview.recording": "Interview, recordingEN",
+
+  "search.filters.itemtype.interview.video": "Interview, videoEN",
+
+  "search.filters.itemtype.music.recording": "Music, recordingEN",
+
+  "search.filters.itemtype.music.video": "Music, videoEN",
+
+  "search.filters.itemtype.other": "Other",
 }

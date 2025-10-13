@@ -1369,30 +1369,30 @@
             </pair>
         </value-pairs>
 
-        <value-pairs value-pairs-name="common_types" dc-term="type">           
+       <value-pairs value-pairs-name="common_types" dc-term="type">           
             <pair>
-                <displayed-value>[type.image]</displayed-value>
-                <stored-value>Image</stored-value>
+                <displayed-value>type.image</displayed-value>
+                <stored-value>type.image</stored-value>
             </pair> 
             <pair>
-                <displayed-value>[type.interview.recording]</displayed-value>
-                <stored-value>Interview, recording</stored-value>
+                <displayed-value>interview.recording</displayed-value>
+                <stored-value>interview.recording</stored-value>
             </pair>
             <pair>
-                <displayed-value>[type.interview.video]</displayed-value>
-                <stored-value>Interview, video</stored-value>
+                <displayed-value>interview.video</displayed-value>
+                <stored-value>interview.video</stored-value>
             </pair>
             <pair>
-                <displayed-value>[type.music.recording]</displayed-value>
-                <stored-value>Music, recording</stored-value>
+                <displayed-value>music.recording</displayed-value>
+                <stored-value>music.recording</stored-value>
             </pair>            
             <pair>
-                <displayed-value>[type.music.video]</displayed-value>
-                <stored-value>Music, video</stored-value>
+                <displayed-value>music.video</displayed-value>
+                <stored-value>music.video</stored-value>
             </pair>
             <pair>
-                <displayed-value>[type.other]</displayed-value>
-                <stored-value>Other</stored-value>
+                <displayed-value>other</displayed-value>
+                <stored-value>other</stored-value>
             </pair>
         </value-pairs>
 

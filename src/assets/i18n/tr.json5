@@ -7355,4 +7355,14 @@
   "type.music.video": "Music, video",
 
   "type.other": "Other",
+
+  "search.filters.itemtype.interview.recording": "Interview, recording",
+
+  "search.filters.itemtype.interview.video": "Interview, video",
+
+  "search.filters.itemtype.music.recording": "Music, recording",
+
+  "search.filters.itemtype.music.video": "Music, video",
+
+  "search.filters.itemtype.other": "Other",
 }
