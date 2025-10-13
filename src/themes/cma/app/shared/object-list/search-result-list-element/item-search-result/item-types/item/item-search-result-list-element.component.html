@@ -49,7 +49,7 @@
             }
             @if (dso.allMetadata(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']).length > 0) {
               <span class="item-list-authors">
-                @for (author of allMetadataValues(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']); track author; let last = $last) {
+                @for (author of getTranslatedAuthors(); track author; let last = $last) {
                   <span>
                     <span [innerHTML]="author"><span [innerHTML]="author"></span></span>
                     @if (!last) {

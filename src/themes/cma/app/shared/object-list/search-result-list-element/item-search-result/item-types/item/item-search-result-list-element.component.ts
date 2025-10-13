@@ -73,4 +73,33 @@ export class ItemSearchResultListElementComponent extends BaseComponent {
     return defaultName;
   }
 
+  // Translating Author/Interviewee names
+  //call base function for it to do it's processing and filter out
+  public getTranslatedAuthors(){
+    const allAuthors = this.allMetadataValues(['dc.contributor.author', 'dc.creator', 'dc.contributor.*']);
+    const allAuthorsArray: MetadataValue[] = this.object.indexableObject.allMetadata('dc.contributor.author');
+    let translatedAuthorArray: string[] = [];
+
+    if (this.object.indexableObject){
+      //Go through all the untranslated ones as prepared by the base component and only use the ones of the user's language
+      for (const metaDataValueItem of allAuthorsArray){
+        if (metaDataValueItem.language === this.currentLang){
+          for (const untranslatedAuthor of allAuthors){
+            if (metaDataValueItem.value === untranslatedAuthor){
+              translatedAuthorArray.push(untranslatedAuthor);
+              break;
+            }
+          }
+        }
+      }
+      //return the filtered ones based on lang
+      if (translatedAuthorArray.length === 0){
+        translatedAuthorArray = allAuthors;
+      }
+      return translatedAuthorArray;
+    }
+    //If we reached this point return the original data
+    return allAuthors;
+  }
+
 }
