@@ -7347,4 +7347,16 @@
   "cma.theme.tsiattista": "Tsiattista",
 
   "cma.theme.songs": "Songs",
+
+  "type.image": "Image",
+
+  "type.interview.recording": "Interview, recordingEL",
+
+  "type.interview.video": "Interview, videoEL",
+
+  "type.music.recording": "Music, recordingEL",
+
+  "type.music.video": "Music, videoEL",
+
+  "type.other": "Other",
 }

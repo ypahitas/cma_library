@@ -22,4 +22,10 @@
   "item.select.table.author": "Featured Person",
   "search.filters.filter.author.head": "Featured Person",
   "item.page.authors": "Featured Persons",
+  "type.image":"Image",
+  "type.interview.recording":"Interview, recordingEL",
+  "type.interview.video":"Interview, videoEL",
+  "type.music.recording":"Music, recordingEL",
+  "type.music.video":"Music, videoEL",
+  "type.other":"Other",            
 }
