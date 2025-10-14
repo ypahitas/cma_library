@@ -28,5 +28,6 @@
   "search.filters.itemtype.music.recording":"Music, ηχογράφηση",
   "search.filters.itemtype.music.video":"Μουσική, βίντεο",
   "search.filters.itemtype.other":"Άλλα",
-  "search.filters.subject.kalamatiano":"Καλαματιανό",        
+  "search.filters.subject.kalamatiano":"Καλαματιανό",
+  "search.filters.authors.michalis.tterlikas":"Μιχάλης Ττερλικκάς",           
 }
