@@ -13,3 +13,6 @@
 - Some file formats are not recognised out of the box in dSpace (e.g. m4a)
     - Need to go login the admin panel ->registries->formats and add the extensions under the appropriate mime type e.g. m4a goes under audio/mpeg
 - Submission page is controlled via sumbission-forms.xml in BackendConfig
+- Note for translations:
+    - Item titles need to be added in dspace dc.title metadata with the langauage codes 'en','el' etc in each language
+    - Keywords(subjects), Author(featured person) and types (interview recording) should be added as i18n keys and translations

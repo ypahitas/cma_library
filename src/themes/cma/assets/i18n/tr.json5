@@ -27,5 +27,6 @@
   "search.filters.itemtype.music.recording":"Music, recording",
   "search.filters.itemtype.music.video":"Music, video",
   "search.filters.itemtype.other":"Other", 
-  "search.filters.subject.kalamatiano":"Kalamatiano",     
+  "search.filters.subject.kalamatiano":"Kalamatiano",
+  "search.filters.author.michalis.tterlikas":"Michalis TTerlikas",        
 }
