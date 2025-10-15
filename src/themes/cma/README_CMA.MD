@@ -16,3 +16,4 @@
 - Note for translations:
     - Item titles need to be added in dspace dc.title metadata with the langauage codes 'en','el' etc in each language
     - Keywords(subjects), Author(featured person) and types (interview recording) should be added as i18n keys and translations
+- Configured assetstore.cfg to enable s3 integration 
