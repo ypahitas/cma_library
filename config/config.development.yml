@@ -78,7 +78,7 @@ geospatialMapViewer:
   # The tile provider(s) to use for the map tiles drawn in the leaflet maps.
   # (see https://leaflet-extras.github.io/leaflet-providers/preview/) for a full list
   tileProviders:
-    - 'CartoDB.Positron'
+    - 'CartoDB.PositronNoLabels'
   # Starting centre point for the map, as lat and lng coordinates. This is useful
   # to set the centre of the map when the map is first loaded and if there are no
   # points, shapes or markers to display.
