@@ -1,7 +1,8 @@
+debug: true
 rest:
-  ssl: false
-  host: localhost
-  port: 8080
+  ssl: true
+  host: library.cyprusmusicarchive.org
+  port: 443
   nameSpace: /server
 themes:
   - name: 'cma'

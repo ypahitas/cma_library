@@ -1,5 +1,89 @@
+debug: false
 rest:
   ssl: true
-  host: sandbox.dspace.org
+  host: library.cyprusmusicarchive.org
   port: 443
   nameSpace: /server
+themes:
+  - name: 'cma'
+    headTags:
+    - tagName: link
+      attributes:
+        rel: icon
+        href: assets/cma/images/cropped-AKM_LogoNoText-32x32.jpg
+        sizes: any
+    - tagName: link
+      attributes:
+        rel: apple-touch-icon
+        href: assets/cma/images/cropped-AKM_LogoNoText-180x180.jpg
+homePage:
+  recentSubmissions:
+    # The number of item showing in recent submission components
+    pageSize: 0
+    # Sort record of recent submission
+    sortField: 'dc.date.accessioned'
+  topLevelCommunityList:
+    # No. of communities to list per page on the home page
+    # This will always round to the nearest number from the list of page sizes. e.g. if you set it to 7 it'll use 10
+    pageSize: 0
+  # Enable or disable the Discover filters on the homepage
+  showDiscoverFilters: false
+# Languages. DSpace Angular holds a message catalog for each of the following languages.
+# When set to active, users will be able to switch to the use of this language in the user interface.
+languages:
+  - code: en
+    label: English
+    active: true
+  - code: el
+    label: Ελληνικά
+    active: true
+  - code: tr
+    label: Türkçe
+    active: true
+# Footer Whether the end user agreement is required before users use the repository.
+# If enabled, the user will be required to accept the agreement before they can use the repository.
+# And whether the privacy statement/COAR notify support page should exist or not.
+info:
+  enableEndUserAgreement: true
+  enablePrivacyStatement: false
+  enableCOARNotifySupport: false
+  # Whether to show the cookie consent popup and the cookie settings footer link or not.
+  enableCookieConsentPopup: false
+mediaViewer:
+  image: true
+  video: true
+browseBy:
+  showThumbnails: false
+# Geospatial Map display options
+geospatialMapViewer:
+  # Which fields to use for parsing as geospatial points in search maps
+  # (note, the item page field component allows any field(s) to be used
+  # and is set as an input when declaring the component)
+  spatialMetadataFields:
+    - 'dcterms.spatial'
+  # Which discovery configuration to use for 'geospatial search', used
+  # in the browse map
+  spatialFacetDiscoveryConfiguration: 'geospatial'
+  # Which filter / facet name to use for faceted geospatial search
+  # used in the browse map
+  spatialPointFilterName: 'point'
+  # Whether item page geospatial metadata should be displayed
+  # (assumes they are wrapped in a test for this config in the template as
+  # per the default templates supplied with DSpace for untyped-item and publication)
+  enableItemPageFields: true
+  # Whether the browse map should be enabled and included in the browse menu
+  enableBrowseMap: true
+  # Whether a 'map view' mode should be included alongside list and grid views
+  # in search result pages
+  enableSearchViewMode: true
+  # The tile provider(s) to use for the map tiles drawn in the leaflet maps.
+  # (see https://leaflet-extras.github.io/leaflet-providers/preview/) for a full list
+  tileProviders:
+    - 'CartoDB.PositronNoLabels'
+  # Starting centre point for the map, as lat and lng coordinates. This is useful
+  # to set the centre of the map when the map is first loaded and if there are no
+  # points, shapes or markers to display.
+  # Defaults to the centre of Istanbul
+  defaultCentrePoint:
+    lat: 35.1264
+    lng: 33.4299
