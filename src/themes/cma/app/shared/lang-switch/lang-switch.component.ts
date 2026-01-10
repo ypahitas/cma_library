@@ -17,4 +17,16 @@ import { LangSwitchComponent as BaseComponent } from '../../../../../app/shared/
   ],
 })
 export class LangSwitchComponent extends BaseComponent {
+
+  /**
+   * Switch to a language and store it in a cookie
+   * @param lang    The language to switch to
+   */
+  useLang(lang: string) {
+    //custom CMA code to auto translate
+
+    //original i18n translations
+    super.useLang(lang);
+  }
+
 }
