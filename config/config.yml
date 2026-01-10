@@ -38,12 +38,12 @@ languages:
   - code: el
     label: Ελληνικά
     active: true
-  - code: tr
-    label: Türkçe
-    active: false
-  - code: en
-    label: English
-    active: true
+#  - code: tr
+#    label: Türkçe
+#    active: false
+#  - code: en
+#    label: English
+#    active: true
 # Footer Whether the end user agreement is required before users use the repository.
 # If enabled, the user will be required to accept the agreement before they can use the repository.
 # And whether the privacy statement/COAR notify support page should exist or not.

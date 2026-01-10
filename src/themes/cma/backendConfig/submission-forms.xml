@@ -1369,7 +1369,7 @@
             </pair>
         </value-pairs>
 
-       <value-pairs value-pairs-name="common_types" dc-term="type">           
+        <value-pairs value-pairs-name="common_types" dc-term="type">           
             <pair>
                 <displayed-value>type.image</displayed-value>
                 <stored-value>type.image</stored-value>
