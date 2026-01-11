@@ -33,6 +33,7 @@ homePage:
   # Enable or disable the Discover filters on the homepage
   showDiscoverFilters: false
 # Languages. DSpace Angular holds a message catalog for each of the following languages.
+defaultLanguage: el
 # When set to active, users will be able to switch to the use of this language in the user interface.
 languages:
   - code: el

@@ -33,6 +33,7 @@ homePage:
   # Enable or disable the Discover filters on the homepage
   showDiscoverFilters: false
 # Languages. DSpace Angular holds a message catalog for each of the following languages.
+defaultLanguage: el
 # When set to active, users will be able to switch to the use of this language in the user interface.
 languages:
   - code: el
@@ -65,6 +66,7 @@ geospatialMapViewer:
   # and is set as an input when declaring the component)
   spatialMetadataFields:
     - 'dcterms.spatial'
+    - 'dc.coverage.spatial'
   # Which discovery configuration to use for 'geospatial search', used
   # in the browse map
   spatialFacetDiscoveryConfiguration: 'geospatial'
