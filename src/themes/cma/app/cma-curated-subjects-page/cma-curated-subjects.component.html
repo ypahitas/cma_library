@@ -1,19 +1,22 @@
 <div class="container curated-subjects">
-<!-- If we go back to promise variable <div *ngIf="communityList$ | async as communityList">-->
-  <div class="row row-cols-3 row-cols-md-4">
-    <ng-container *ngFor="let subject of curatedSubjects">
+  <!-- If we go back to promise variable <div *ngIf="communityList$ | async as communityList">-->
+    <div class="row row-cols-3 row-cols-md-4">
+      <ng-container *ngFor="let subject of curatedSubjects">
         <div class="col-md pb-2">
-          <div class="card">
+          <div class="card h-100">
+            <img class="card-img-top" [src]="subject.image">
             <div class="card-body d-flex flex-column">            
-              <a  class="card-link btn btn-primary mt-auto" [routerLink]="[urlPrefix]" [queryParams]="{value: subject.keyword}">{{subject.translationKey | translate }}</a>
+              <h5 class="card-title">{{subject.translationKey | translate }}</h5>
+              <p class="card-text">{{subject.descriptionKey | translate }}</p>
+              <a  class="card-link btn btn-primary mt-auto" [routerLink]="[urlPrefix]" [queryParams]="{value: subject.keyword}">{{ 'collections.explore' | translate }}</a>
             </div>
           </div>  
-        </div>      
-    </ng-container>
+          </div> 
+      </ng-container>
+    </div>
+  <!--</div>-->
+    <br/>
+    <p class="text-center">
+      <a routerLink="/browse/subject" class="btn btn-primary" role="button" tabindex="0">{{"dynamic-list.load-more" | translate}}</a>
+    </p>
   </div>
-<!--</div>-->
-  <br/>
-  <p class="text-center">
-    <a routerLink="/browse/subject" class="btn btn-primary" role="button" tabindex="0">{{"dynamic-list.load-more" | translate}}</a>
-  </p>
-</div>

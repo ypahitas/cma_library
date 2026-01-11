@@ -30,10 +30,10 @@ export class CMACuratedSubjectsComponent implements OnInit {
   constructor() {
     //CMA hardcoded for now . Need to see how to expose via config
     this. curatedSubjects = [
-      { keyword:'Instruments',translationKey:'cma.theme.instruments' },
-      { keyword:'Songs',translationKey:'cma.theme.songs' } ,
-      { keyword:'Tsiattista', translationKey:'cma.theme.tsiattista' } ,
-      { keyword:'Fones', translationKey:'cma.theme.fones' }, 
+      { keyword:'Instruments',translationKey:'cma.theme.instruments',descriptionKey:'cma.theme.instruments.desc', image:'../../assets/images/' },
+      { keyword:'Songs',translationKey:'cma.theme.songs', descriptionKey:'cma.theme.songs.desc', image:'../../assets/images/' } ,
+      { keyword:'Tsiattista', translationKey:'cma.theme.tsiattista',descriptionKey:'cma.theme.tsiattista.desc', image:'../../assets/images/' } ,
+      { keyword:'Fones', translationKey:'cma.theme.fones',descriptionKey:'cma.theme.instruments.fones',image:'../../assets/images/' }, 
     ];
   }
 

@@ -7338,7 +7338,7 @@
 
   "datapackage.listelement.badge": "Item",
 
-  "menu.section.map": "Map",
+  "menu.section.map": "Χάρτης",
 
   "cma.theme.fones": "Fones",
 
@@ -7375,4 +7375,6 @@
   "search.filters.authors.michalis.tterlikas": "Μιχάλης Ττερλικκάς",
 
   "search.filters.author.michalis.tterlikas": "Μιχάλης Ττερλικκάς",
+
+  "item.page.location": "Τοποθεσία",
 }
