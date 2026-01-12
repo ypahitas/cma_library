@@ -1,6 +1,6 @@
 debug: false
 ui:
-  host: 0.0.0.0
+  host: localhost
   port: 4000
   ssl: false
 rest:
