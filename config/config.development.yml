@@ -4,9 +4,9 @@ ui:
   port: 4000
   ssl: false
 rest:
-  ssl: false
-  host: 92.205.178.243
-  port: 8080
+  ssl: true
+  host: library.cyprusmusicarchive.org
+  port: 443
   nameSpace: /server
 themes:
   - name: 'cma'
