@@ -10,13 +10,17 @@
           <ds-user-menu [inExpandableNavbar]="true"></ds-user-menu>
         }
 
-        <div class="navbar-nav align-items-md-center me-auto shadow-none gapx-3" role="menubar">
-          <a  role="menuitem" href="/home" tabindex="0" class="ds-menu-item">{{ 'home.title' | translate }}</a>
-          <a  role="menuitem" href="/collection-list" tabindex="1" class="ds-menu-item">{{ 'menu.section.collections' | translate }}</a>
-          <a  role="menuitem" href="/curated-subjects" tabindex="2" class="ds-menu-item">{{ 'menu.section.themes' | translate }}</a>
-          <a  role="menuitem" href="/browse/map" tabindex="3" class="ds-menu-item">{{ 'menu.section.map' | translate }}</a>
-          <a  role="menuitem" href="/contributors" tabindex="5" class="ds-menu-item">{{ 'menu.section.contributors' | translate }}</a>
-          <a  role="menuitem" href="/contact-me" tabindex="4" class="ds-menu-item">{{ 'menu.section.contact' | translate }}</a>
+        <div class="d-flex w-100 justify-content-between align-items-md-center">
+          <div class="navbar-nav me-auto shadow-none gapx-3" role="menubar">
+            <a  role="menuitem" href="/home" tabindex="0" class="ds-menu-item">{{ 'home.title' | translate }}</a>
+            <a  role="menuitem" href="/collection-list" tabindex="1" class="ds-menu-item">{{ 'menu.section.collections' | translate }}</a>
+            <a  role="menuitem" href="/curated-subjects" tabindex="2" class="ds-menu-item">{{ 'menu.section.themes' | translate }}</a>
+            <a  role="menuitem" href="/browse/map" tabindex="3" class="ds-menu-item">{{ 'menu.section.map' | translate }}</a>
+          </div>
+          <div class="navbar-nav ms-auto shadow-none gapx-3" role="menubar">
+            <a  role="menuitem" href="/contributors" tabindex="5" class="ds-menu-item">{{ 'menu.section.contributors' | translate }}</a>
+            <a  role="menuitem" href="/contact-me" tabindex="4" class="ds-menu-item">{{ 'menu.section.contact' | translate }}</a>
+          </div>
           <!-- 
           CMA - This is the default dspace dynamic menu - not easily customisable
           @for (section of (sections | async); track section) {
