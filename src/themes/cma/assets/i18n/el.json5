@@ -1,6 +1,6 @@
 {
-  "cma.home.news.library": "Cyprus Music Archive Library",
-  "cma-home-news-explore": "Explore audio and video recordings from different collections",
+  "cma.home.news.welcome": "Καλωσορίσατε στην ψηφιακή βιβλιοθήκη του Αρχείου Κυπριακής Μουσικής.",
+  "cma.home.news.explore": "Η βιβλιοθήκη περιλαμβάνει ψηφιοποιημένες ηχογραφήσεις, βίντεο και φωτογραφίες που αφορούν στην κυπριακή παραδοσιακή μουσική. Στο υλικό συγκαταλέγονται τόσο εκτελέσεις μουσικής, όσο και συνεντεύξεις για την κυπριακή μουσική, ποίηση, λαογραφία κ.λπ. Μπορείτε να περιηγηθείτε στη συλλογή είτε επιλέγοντας τις Συλλογές και Κατηγορίες στο μενού είτε βάζοντας τη δική σας λέξη-κλειδί στο κουτί αναζήτησης.",
   "repository.title": "CMA Library",
   "repository.title.prefix": "CMA Library :: ",
   "home.search-form.placeholder": "Αναζήτηση στο αρχείο...",

@@ -3452,7 +3452,7 @@
 
   "menu.section.browse_community_by_title": "Με τίτλο",
 
-  "menu.section.browse_global": "Search by...",
+  "menu.section.browse_global": "Αναζήτηση...",
 
   "menu.section.browse_global_by_author": "Ανά Συγγραφέα",
 
@@ -7326,9 +7326,9 @@
 
   "cma.home.news.library": "Cyprus Music Archive Library",
 
-  "menu.section.collections": "Collections",
+  "menu.section.collections": "Συλλογές",
 
-  "menu.section.themes": "Themes",
+  "menu.section.themes": "Κατηγορίες",
 
   "footer.link.dspace.prefix": "Powered by",
 
@@ -7340,13 +7340,13 @@
 
   "menu.section.map": "Χάρτης",
 
-  "cma.theme.fones": "Fones",
+  "cma.theme.fones": "Φωνές",
 
   "cma.theme.instruments": "Instruments",
 
-  "cma.theme.tsiattista": "Tsiattista",
+  "cma.theme.tsiattista": "Τσιαττιστά",
 
-  "cma.theme.songs": "Songs",
+  "cma.theme.songs": "Τραγούδια",
 
   "type.image": "Image",
 
@@ -7377,4 +7377,64 @@
   "search.filters.author.michalis.tterlikas": "Μιχάλης Ττερλικκάς",
 
   "item.page.location": "Τοποθεσία",
+
+  "cma.home.news.welcome": "Καλωσορίσατε στην ψηφιακή βιβλιοθήκη του Αρχείου Κυπριακής Μουσικής.",
+
+  "cma.home.news.explore": "Η βιβλιοθήκη περιλαμβάνει ψηφιοποιημένες ηχογραφήσεις, βίντεο και φωτογραφίες που αφορούν στην κυπριακή παραδοσιακή μουσική. Στο υλικό συγκαταλέγονται τόσο εκτελέσεις μουσικής, όσο και συνεντεύξεις για την κυπριακή μουσική, ποίηση, λαογραφία κ.λπ. Μπορείτε να περιηγηθείτε στη συλλογή είτε επιλέγοντας τις Συλλογές και Κατηγορίες στο μενού είτε βάζοντας τη δική σας λέξη-κλειδί στο κουτί αναζήτησης.",
+
+  "cma.theme.intereviews": "Συνεντεύξεις",
+
+  "cma.theme.intereviews.desc": "...",
+
+  "cma.theme.video": "Βίντεο",
+
+  "cma.theme.video.desc": "...",
+
+  "cma.theme.audio": "Ήχος",
+
+  "cma.theme.audio.desc": "...",
+
+  "cma.theme.photo": "Φωτογραφίες",
+
+  "cma.theme.photo.desc": "...",
+
+  "cma.theme.tsiattista.desc": "....",
+
+  "cma.theme.fones.desc": "....",
+
+  "cma.theme.songs.desc": "...",
+
+  "cma.theme.wedding": "Του γάμου",
+
+  "cma.theme.wedding.desc": "Του γάμου",
+
+  "cma.theme.instrumental": "Οργανικά",
+
+  "cma.theme.instrumental.desc": "...",
+
+  "cma.theme.dances": "Χοροί",
+
+  "cma.theme.dances.desc": "...",
+
+  "cma.theme.lute": "Λαούτο",
+
+  "cma.theme.lute.desc": "...",
+
+  "cma.theme.violin": "Βιολί",
+
+  "cma.theme.violin.desc": "...",
+
+  "cma.theme.tampuchia": "Ταμπουτσιά",
+
+  "cma.theme.tampuchia.desc": "...",
+
+  "cma.theme.daul": "Ζουρνάς & νταούλι",
+
+  "cma.theme.daul.desc": "....",
+
+  "cma.theme.flute": "Πιθκιαύλιν",
+
+  "cma.theme.flute.desc": "....",
+
+  "search.filters.itemtype.image": "Φωτογραφια",
 }
