@@ -1,0 +1,81 @@
+.contributors {
+  padding: 2rem 0;
+
+  .contributors-content {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .contributors-intro {
+      .lead {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+    }
+
+    .contributors-section {
+      h2 {
+        font-size: 1.5rem;
+        color: #333;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 1rem;
+      }
+
+      .organization-logos {
+        margin-top: 2rem;
+        
+        .logo-row {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 2rem;
+          
+          .logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            padding: 0.5rem;
+            
+            .logo-image {
+              max-height: 100%;
+              max-width: 200px;
+              width: auto;
+              height: auto;
+              object-fit: contain;
+              filter: grayscale(0%);
+              transition: opacity 0.3s ease;
+              
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .contributors-images {
+      .contributor-image-wrapper {
+        text-align: center;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        border: 1px solid #dee2e6;
+
+        .contributor-image {
+          max-width: 100%;
+          height: auto;
+          border-radius: 0.25rem;
+        }
+      }
+    }
+  }
+}

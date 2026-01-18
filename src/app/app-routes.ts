@@ -45,6 +45,7 @@ import { provideSubmissionState } from './submission/provide-submission-state';
 import { SUGGESTION_MODULE_PATH } from './suggestions-page/suggestions-page-routing-paths';
 import { CMACuratedSubjectsComponent } from '../themes/cma/app/cma-curated-subjects-page/cma-curated-subjects.component';
 import { CMAContactMeComponent } from '../themes/cma/app/contact-me-page/contact-me.component';
+import { CMAContributorsComponent } from '../themes/cma/app/contributors-page/contributors.component';
 
 export const APP_ROUTES: Route[] = [
   { path: INTERNAL_SERVER_ERROR, component: ThemedPageInternalServerErrorComponent },
@@ -91,6 +92,11 @@ export const APP_ROUTES: Route[] = [
       {
         path: 'contact-me',
         component: CMAContactMeComponent,
+        canActivate: [endUserAgreementCurrentUserGuard],
+      },
+      {
+        path: 'contributors',
+        component: CMAContributorsComponent,
         canActivate: [endUserAgreementCurrentUserGuard],
       },
       {
