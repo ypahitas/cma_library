@@ -9,6 +9,7 @@
   "menu.section.collections": "Συλλογές",
   "menu.section.themes": "Κατηγορίες",
   "menu.section.map": "Χάρτης",
+  "menu.section.contact": "Επικοινωνία",
   "footer.link.dspace.prefix": "Powered by",
   "collections.explore": "Εξερεύνηση",
   "collections.title": "Collections",
@@ -56,5 +57,8 @@
   "search.filters.itemtype.music.video":"Μουσική, βίντεο",
   "search.filters.itemtype.other":"Άλλα",
   "search.filters.subject.kalamatiano":"Καλαματιανό",
-  "item.page.location":"Τοποθεσία"           
+  "item.page.location":"Τοποθεσία",
+  "cma.contact.title": "Επικοινωνία",
+  "cma.contact.intro": "Αν έχετε επιπρόσθετες πληροφορίες για κάποια από τις συλλογές μας, ή αν θα θέλατε να μοιραστείτε τη συλλογή σας με το ΑΚΜ, παρακαλώ επικοινωνήστε μαζί μας.",
+  "cma.contact.email.label": "Email",
 }

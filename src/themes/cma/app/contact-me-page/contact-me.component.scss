@@ -1,0 +1,34 @@
+.contact-me {
+  padding: 2rem 0;
+
+  .contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    .lead {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .contact-email {
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+
+      .email-address {
+        font-size: 1.1rem;
+        margin: 0;
+      }
+
+      .email-link {
+        color: #007bff;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

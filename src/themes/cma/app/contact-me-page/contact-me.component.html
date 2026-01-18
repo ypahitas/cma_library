@@ -1,0 +1,20 @@
+<div class="container contact-me">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">{{ 'cma.contact.title' | translate }}</h1>
+      
+      <div class="contact-content">
+        <p class="lead mb-4">
+          {{ 'cma.contact.intro' | translate }}
+        </p>
+        
+        <div class="contact-email mt-5">
+          <p class="mb-2"><strong>{{ 'cma.contact.email.label' | translate }}:</strong></p>
+          <p class="email-address">
+            <a [href]="'mailto:' + email" class="email-link">{{ email }}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

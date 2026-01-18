@@ -8,6 +8,7 @@
   "menu.section.collections": "Collections",
   "menu.section.themes": "Themes",
   "menu.section.map": "Map",
+  "menu.section.contact": "Contact",
   "footer.link.dspace.prefix": "Powered by",
   "collections.explore": "Explore",
   "collections.title": "Collections",
@@ -28,5 +29,8 @@
   "search.filters.itemtype.music.video":"Music, video",
   "search.filters.itemtype.other":"Other", 
   "search.filters.subject.kalamatiano":"Kalamatiano",
-  "search.filters.author.michalis.tterlikas":"Michalis TTerlikas",        
+  "search.filters.author.michalis.tterlikas":"Michalis TTerlikas",
+  "cma.contact.title": "Contact Us",
+  "cma.contact.intro": "We welcome your inquiries, feedback, and questions about the Cyprus Music Archive. Please feel free to reach out to us using the contact information below.",
+  "cma.contact.email.label": "Email",
 }
