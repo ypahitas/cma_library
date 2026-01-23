@@ -7,7 +7,6 @@
             <img class="card-img-top" [src]="subject.image">
             <div class="card-body d-flex flex-column">            
               <h5 class="card-title">{{subject.translationKey | translate }}</h5>
-              <p class="card-text">{{subject.descriptionKey | translate }}</p>
               <a  class="card-link btn btn-primary mt-auto" [routerLink]="[urlPrefix]" [queryParams]="{value: subject.keyword}">{{ 'collections.explore' | translate }}</a>
             </div>
           </div>  

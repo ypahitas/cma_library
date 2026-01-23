@@ -1420,7 +1420,7 @@
 
   "collection.source.update.notifications.error.title": "Σφάλμα Διακομιστή",
 
-  "communityList.breadcrumbs": "Collection List",
+  "communityList.breadcrumbs": "Λίστα Συλλογών",
 
   "communityList.tabTitle": "Λίστα κοινότητας",
 
@@ -2890,9 +2890,9 @@
 
   "item.page.abstract": "Περίληψη",
 
-  "item.page.author": "Featured Person",
+  "item.page.author": "Άτομα που παρουσιάζονται",
 
-  "item.page.authors": "Featured Persons",
+  "item.page.authors": "Άτομα που παρουσιάζονται",
 
   "item.page.citation": "Παραπομπή",
 
@@ -3080,7 +3080,7 @@
 
   "item.select.table.deselect": "Deselect item",
 
-  "item.select.table.author": "Featured Person",
+  "item.select.table.author": "Άτομα που παρουσιάζονται",
 
   "item.select.table.collection": "Συλλογή",
 
@@ -4570,7 +4570,7 @@
 
   "search.filters.applied.f.title": "Title",
 
-  "search.filters.applied.f.author": "Featured Person",
+  "search.filters.applied.f.author": "Άτομα που παρουσιάζονται",
 
   "search.filters.applied.f.dateIssued.max": "Ημερομηνία λήξης",
 
@@ -4630,7 +4630,7 @@
 
   "search.filters.filter.title.label": "Search Title",
 
-  "search.filters.filter.author.head": "Featured Person",
+  "search.filters.filter.author.head": "Άτομα που παρουσιάζονται",
 
   "search.filters.filter.author.placeholder": "Όνομα συγγραφέα",
 
@@ -7334,9 +7334,9 @@
 
   "collections.explore": "Εξερεύνηση",
 
-  "collections.title": "Collections",
+  "collections.title": "Συλλογές",
 
-  "datapackage.listelement.badge": "Item",
+  "datapackage.listelement.badge": "Αντικείμενο",
 
   "menu.section.map": "Χάρτης",
 
@@ -7467,4 +7467,16 @@
   "cma.contributors.section.individuals.title": "Ατομικοί Συντελεστές",
 
   "cma.contributors.section.individuals.text": "Μιχάλλης, Νικολέττα.....",
+
+  "search.filters.item.type.image": "Φωτογραφια",
+
+  "search.filters.item.type.interview.recording": "Συνέντευξη, ηχογράφηση",
+
+  "search.filters.item.type.interview.video": "Συνέντευξη, βίντεο",
+
+  "search.filters.item.type.music.recording": "Music, ηχογράφηση",
+
+  "search.filters.item.type.music.video": "Μουσική, βίντεο",
+
+  "search.filters.item.type.other": "Άλλα",
 }
