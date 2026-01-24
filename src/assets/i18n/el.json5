@@ -7493,4 +7493,8 @@
   "search.filters.item.type.recording": "Ηχογράφηση",
 
   "search.filters.item.type.video": "Βίντεο",
+
+  "search.filters.itemtype.recording": "Ηχογράφηση",
+
+  "search.filters.itemtype.video": "Βίντεο",
 }
