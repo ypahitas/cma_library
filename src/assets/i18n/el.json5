@@ -7481,4 +7481,16 @@
   "search.filters.item.type.other": "Άλλα",
 
   "cma.theme.narative": "Ποιητάρικα/Αφηγηματικά",
+
+  "cma.contributors.intro1": "Επιστημονική υπεύθυνη έργου: Δρ Νικολέττα Δημητρίου, εθνομουσικολόγος",
+
+  "cma.contributors.intro2": "Καταγραφή υλικού (βάση δεδομένων): Μιχάλης Ττερλικκάς, Μαρία Κυπριανού",
+
+  "cma.contributors.intro3": "Ψηφιοποίηση υλικού: Κωνσταντίνος Τερλικκάς",
+
+  "cma.contributors.intro4": "Τεχνικός υπεύθυνος έργου: Γιάννης Παχίτας",
+
+  "search.filters.item.type.recording": "Ηχογράφηση",
+
+  "search.filters.item.type.video": "Βίντεο",
 }
