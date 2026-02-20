@@ -19,21 +19,11 @@
               <span [innerHTML]="separator"></span>
             }
           </ng-template>
-
-          @if (showLinkAsButton) {
-            <ds-file-download-button
-              [bitstream]="file"
-              [item]="item">
-              <ng-container *ngTemplateOutlet="fileContent"></ng-container>
-            </ds-file-download-button>
-          } @else {
-            <ds-file-download-link
-              [bitstream]="file"
-              [item]="item">
-              <ng-container *ngTemplateOutlet="fileContent"></ng-container>
-            </ds-file-download-link>
-          }
-
+          <ds-file-download-link
+            [bitstream]="file"
+            [item]="item">
+            <ng-container *ngTemplateOutlet="fileContent"></ng-container>
+          </ds-file-download-link>
         }
         @if (isLoading) {
           <ds-loading message="{{'loading.default' | translate}}" [showMessage]="false"></ds-loading>
