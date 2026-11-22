@@ -7399,4 +7399,18 @@
   "cma.contributors.section.individuals.title": "Individual Contributors",
 
   "cma.contributors.section.individuals.text": "Many individuals have generously shared their personal collections, memories, and expertise to enrich the archive. We honor their contributions to preserving Cypriot musical traditions.",
+
+  "item.page.tracks": "Tracks",
+
+  "browse.comcol.by.location": "By Location",
+
+  "browse.metadata.location": "Location",
+
+  "browse.metadata.location.breadcrumbs": "Browse by Location",
+
+  "menu.section.browse_global_by_location": "By Location",
+
+  "browse.metadata.map.locations": "Locations",
+
+  "item.page.tracks.play-from": "Play from {{ time }}",
 }

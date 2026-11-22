@@ -28,6 +28,7 @@ import { listableObjectComponent } from '../../../../../../../app/shared/object-
 import { ThemedResultsBackButtonComponent } from '../../../../../../../app/shared/results-back-button/themed-results-back-button.component';
 import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/themed-thumbnail.component';
 import { RouteService } from 'src/app/core/services/route.service';
+import { ItemPageTracksFieldComponent } from '../../field-components/specific-field/tracks/item-page-tracks-field.component';
 
 @listableObjectComponent(Item, ViewMode.StandalonePage, Context.Any, 'cma')
 @Component({
@@ -45,6 +46,7 @@ import { RouteService } from 'src/app/core/services/route.service';
     CollectionsComponent,
     DsoEditMenuComponent,
     GenericItemPageFieldComponent,
+    ItemPageTracksFieldComponent,
     GeospatialItemPageFieldComponent,
     ItemPageAbstractFieldComponent,
     ItemPageCcLicenseFieldComponent,

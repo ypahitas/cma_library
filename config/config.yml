@@ -42,9 +42,9 @@ languages:
 #  - code: tr
 #    label: Türkçe
 #    active: false
-#  - code: en
-#    label: English
-#    active: true
+  - code: en
+    label: English
+    active: false
 # Footer Whether the end user agreement is required before users use the repository.
 # If enabled, the user will be required to accept the agreement before they can use the repository.
 # And whether the privacy statement/COAR notify support page should exist or not.
@@ -84,7 +84,23 @@ geospatialMapViewer:
   # The tile provider(s) to use for the map tiles drawn in the leaflet maps.
   # (see https://leaflet-extras.github.io/leaflet-providers/preview/) for a full list
   tileProviders:
-    - 'CartoDB.PositronNoLabels'
+    - 'Esri.WorldGrayCanvas'
+  # Vector base map drawn instead of tileProviders when set. OpenFreeMap is free and needs no key.
+  vectorStyleUrl: 'https://tiles.openfreemap.org/styles/positron'
+  # Show place names in Greek (OSM name:el), falling back to the local name
+  labelLanguage: 'el'
+  # Hide roads, street names, buildings and airports; keep regions, towns and villages
+  hideStreetDetails: true
+  # Furthest automatic zoom when fitting to markers (12 = about 20 x 20 km, 13 = 2-3 villages)
+  maxAutoZoom: 12
+  # Area the browse map opens on (Cyprus), instead of fitting every marker
+  browseMapBounds:
+    south: 34.55
+    west: 32.25
+    north: 35.72
+    east: 34.62
+  # Zoom this many levels closer than the size that fits browseMapBounds (0 = whole area visible)
+  browseMapZoomOffset: 1
   # Starting centre point for the map, as lat and lng coordinates. This is useful
   # to set the centre of the map when the map is first loaded and if there are no
   # points, shapes or markers to display.

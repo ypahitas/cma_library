@@ -49,6 +49,11 @@ export const copyWebpackOptions = {
       },
     },
     {
+      // MapLibre GL 6 runs its tile worker from a separate module file; see geospatial-map.component.ts
+      from: path.join(__dirname, '..', 'node_modules', 'maplibre-gl', 'dist', 'maplibre-gl-worker.mjs'),
+      to: path.join('assets', 'maplibre', 'maplibre-gl-worker.mjs'),
+    },
+    {
       from: path.join(__dirname, '..', 'src', 'robots.txt.ejs'),
       to: 'assets/robots.txt.ejs'
     }
@@ -80,6 +85,12 @@ export const commonExports = {
     }),
     new CopyWebpackPlugin(copyWebpackOptions),
   ],
+  resolve: {
+    alias: {
+      // maplibre-gl 6 only exports an ESM 'import' entry; @maplibre/maplibre-gl-leaflet loads it with require()
+      'maplibre-gl$': path.join(__dirname, '..', 'node_modules', 'maplibre-gl', 'dist', 'maplibre-gl.mjs'),
+    },
+  },
   module: {
     rules: [
       {

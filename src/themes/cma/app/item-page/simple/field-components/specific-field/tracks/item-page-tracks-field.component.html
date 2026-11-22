@@ -1,0 +1,15 @@
+@if (lines.length > 0) {
+  <ds-metadata-field-wrapper [label]="label | translate">
+    @for (line of lines; track $index) {
+      <div class="track-line dont-break-out">
+        @if (line.time) {
+          <button type="button" class="btn btn-link track-time"
+                  [attr.aria-label]="'item.page.tracks.play-from' | translate: { time: line.time }"
+                  [title]="'item.page.tracks.play-from' | translate: { time: line.time }"
+                  (click)="playFrom(line.seconds)">{{ line.time }}</button>
+        }
+        {{ line.text }}
+      </div>
+    }
+  </ds-metadata-field-wrapper>
+}

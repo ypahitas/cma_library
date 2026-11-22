@@ -1062,11 +1062,11 @@
 
   "browse.metadata.title.breadcrumbs": "Πλοήγηση ανά τίτλο",
 
-  "browse.metadata.map": "Browse by Geolocation",
+  "browse.metadata.map": "Χάρτης",
 
-  "browse.metadata.map.breadcrumbs": "Browse by Geolocation",
+  "browse.metadata.map.breadcrumbs": "Περιήγηση στον Χάρτη",
 
-  "browse.metadata.map.count.items": "items",
+  "browse.metadata.map.count.items": "τεκμήρια",
 
   "pagination.next.button": "Επόμενο",
 
@@ -1126,9 +1126,9 @@
 
   "browse.taxonomy.button": "Browse",
 
-  "browse.title": "Πλοήγηση στη {{ collection }} ανά {{ field }}{{ startsWith }} {{ value }}",
+  "browse.title": "Πλοήγηση ανά {{ field }}{{ startsWith }} {{ value }}",
 
-  "browse.title.page": "Πλοήγηση στη {{ collection }} ανά {{ field }} {{ value }}",
+  "browse.title.page": "Πλοήγηση ανά {{ field }} {{ value }}",
 
   "search.browse.item-back": "Back to Results",
 
@@ -4964,7 +4964,7 @@
 
   "statistics.title": "Στατιστικά",
 
-  "statistics.header": "Στατιστικά στοιχεία για {{ range }}",
+  "statistics.header": "Στατιστικά στοιχεία για {{ scope }}",
 
   "statistics.breadcrumbs": "Στατιστικά",
 
@@ -7497,4 +7497,18 @@
   "search.filters.itemtype.recording": "Ηχογράφηση",
 
   "search.filters.itemtype.video": "Βίντεο",
+
+  "item.page.tracks": "Περιεχόμενα",
+
+  "browse.comcol.by.location": "Ανά Τοποθεσία",
+
+  "browse.metadata.location": "Τοποθεσία",
+
+  "browse.metadata.location.breadcrumbs": "Περιήγηση ανά Τοποθεσία",
+
+  "menu.section.browse_global_by_location": "Ανά Τοποθεσία",
+
+  "browse.metadata.map.locations": "Τοποθεσίες",
+
+  "item.page.tracks.play-from": "Αναπαραγωγή από {{ time }}",
 }

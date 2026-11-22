@@ -1,0 +1,15 @@
+
+// Beside the map on desktop: list as tall as the map (.browse-map-container), scrolling if longer
+@media screen and (min-width: map-get($grid-breakpoints, lg)) {
+  .map-locations {
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+  }
+
+  .map-locations-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}

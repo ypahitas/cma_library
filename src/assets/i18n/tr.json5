@@ -7397,4 +7397,16 @@
   "cma.contributors.section.individuals.title": "Individual Contributors",
 
   "cma.contributors.section.individuals.text": "Many individuals have generously shared their personal collections, memories, and expertise to enrich the archive. We honor their contributions to preserving Cypriot musical traditions.",
+
+  "item.page.tracks": "Parçalar",
+
+  "browse.comcol.by.location": "Konuma göre",
+
+  "browse.metadata.location": "Konum",
+
+  "browse.metadata.location.breadcrumbs": "Konuma göre göz at",
+
+  "menu.section.browse_global_by_location": "Konuma göre",
+
+  "item.page.tracks.play-from": "{{ time }} konumundan oynat",
 }

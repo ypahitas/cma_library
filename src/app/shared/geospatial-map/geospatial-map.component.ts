@@ -98,6 +98,13 @@ export class GeospatialMapComponent implements AfterViewInit, OnInit, OnDestroy 
 
   private subs: Subscription[] = [];
 
+  /**
+   * OpenMapTiles source layers dropped from a vector base map when hideStreetDetails is set
+   */
+  private readonly STREET_DETAIL_SOURCE_LAYERS = [
+    'transportation', 'transportation_name', 'building', 'aeroway', 'aerodrome_label',
+  ];
+
   constructor(private elRef: ElementRef,
               @Inject(PLATFORM_ID) private platformId: string,
               private router: Router,
@@ -129,6 +136,80 @@ export class GeospatialMapComponent implements AfterViewInit, OnInit, OnDestroy 
   }
 
   /**
+   * Options for fitting the map to its markers. A single point (or points close together) would
+   * otherwise zoom all the way in; maxAutoZoom caps that, and users can still zoom in further.
+   *
+   * @private
+   */
+  private getFitBoundsOptions(): any {
+    const maxAutoZoom = environment.geospatialMapViewer.maxAutoZoom;
+    return hasValue(maxAutoZoom) ? { maxZoom: maxAutoZoom } : {};
+  }
+
+  /**
+   * Add a MapLibre GL vector base map (e.g. OpenFreeMap) as the Leaflet base layer.
+   * Place-name labels are rewritten to prefer the given language (OSM "name:xx" tag),
+   * falling back to the default local name where no translation exists.
+   *
+   * @param L leaflet, already loaded in browser mode
+   * @param styleUrl URL of a MapLibre style JSON
+   * @param labelLanguage optional ISO 639-1 code, e.g. 'el'
+   * @param hideStreetDetails drop roads, railways, street names, buildings and airports
+   * @private
+   */
+  private addVectorBaseLayer(L: any, styleUrl: string, labelLanguage?: string, hideStreetDetails?: boolean): void {
+    const maplibregl = require('maplibre-gl');
+    require('@maplibre/maplibre-gl-leaflet');
+    // The worker module is copied into assets at build time (see webpack.common.ts)
+    maplibregl.setWorkerUrl(new URL('assets/maplibre/maplibre-gl-worker.mjs', document.baseURI).href);
+    this.map.setMinZoom(3);
+    this.map.setMaxZoom(18);
+
+    const addLayer = (style: any) => {
+      if (hasValue(this.map)) {
+        L.maplibreGL({ style }).addTo(this.map);
+      }
+    };
+    if (isEmpty(labelLanguage) && !hideStreetDetails) {
+      addLayer(styleUrl);
+      return;
+    }
+    fetch(styleUrl)
+      .then((response) => response.json())
+      .then((style) => {
+        if (hideStreetDetails) {
+          style.layers = (style.layers || []).filter((layer) => !this.STREET_DETAIL_SOURCE_LAYERS.includes(layer['source-layer']));
+        }
+        if (isNotEmpty(labelLanguage)) {
+          this.localiseStyleLabels(style, labelLanguage);
+        }
+        addLayer(style);
+      })
+      // If the style can't be fetched here, let MapLibre load it with its default labels
+      .catch(() => addLayer(styleUrl));
+  }
+
+  /**
+   * Rewrite every name label in a MapLibre style to show the name in the given language,
+   * or the default name when there is no translation. Labels that don't use names
+   * (e.g. road number shields) are left untouched.
+   *
+   * @param style MapLibre style JSON
+   * @param language ISO 639-1 code, e.g. 'el'
+   * @private
+   */
+  private localiseStyleLabels(style: any, language: string): any {
+    const localisedName = ['coalesce', ['get', `name:${language}`], ['get', 'name']];
+    (style.layers || []).forEach((layer) => {
+      const textField = layer.layout?.['text-field'];
+      if (layer.type === 'symbol' && hasValue(textField) && JSON.stringify(textField).includes('"name')) {
+        layer.layout['text-field'] = localisedName;
+      }
+    });
+    return style;
+  }
+
+  /**
    * Initialize map component, tile providers, and draw markers depending on context
    *
    * @private
@@ -154,14 +235,21 @@ export class GeospatialMapComponent implements AfterViewInit, OnInit, OnDestroy 
       center: this.DEFAULT_CENTRE_POINT,
       zoom: 11,
     });
-    const tileProviders = environment.geospatialMapViewer.tileProviders;
-    for (let i = 0; i < tileProviders.length; i++) {
-      // Add tiles to the map
-      const tiles = L.tileLayer.provider(tileProviders[i], {
-        maxZoom: 18,
-        minZoom: 3,
-      });
-      tiles.addTo(this.map);
+    const vectorStyleUrl = environment.geospatialMapViewer.vectorStyleUrl;
+    if (isNotEmpty(vectorStyleUrl)) {
+      this.addVectorBaseLayer(L, vectorStyleUrl, environment.geospatialMapViewer.labelLanguage,
+        environment.geospatialMapViewer.hideStreetDetails);
+    } else {
+      const tileProviders = environment.geospatialMapViewer.tileProviders;
+      for (let i = 0; i < tileProviders.length; i++) {
+        // Add tiles to the map
+        const tiles = L.tileLayer.provider(tileProviders[i], {
+          // Esri.WorldGrayCanvas has no tiles past zoom 16 ("Map data not yet available")
+          maxZoom: 16,
+          minZoom: 3,
+        });
+        tiles.addTo(this.map);
+      }
     }
 
     // Call add markers function as appropriate (metadata values, facet results, search results)
@@ -223,7 +311,7 @@ export class GeospatialMapComponent implements AfterViewInit, OnInit, OnDestroy 
         bounds = bboxBounds;
       }
       this.map.invalidateSize(true);
-      this.map.fitBounds(bounds);
+      this.map.fitBounds(bounds, this.getFitBoundsOptions());
     }, 500);
   }
 
@@ -285,9 +373,21 @@ export class GeospatialMapComponent implements AfterViewInit, OnInit, OnDestroy 
     // Map bounds / zoom fitting tends to be smoother when done after a short delay
     setTimeout(() => {
       this.map.addLayer(markers);
-      const bounds = L.latLngBounds(points.map(point => [point.coordinates[1], point.coordinates[0]]));
+      // The browse map opens on a fixed area (e.g. Cyprus) when one is configured, else fits all markers
+      const browseMapBounds = environment.geospatialMapViewer.browseMapBounds;
+      const useBrowseMapBounds = this.layout === 'browse' && hasValue(browseMapBounds);
+      const bounds = useBrowseMapBounds
+        ? L.latLngBounds([browseMapBounds.south, browseMapBounds.west], [browseMapBounds.north, browseMapBounds.east])
+        : L.latLngBounds(points.map(point => [point.coordinates[1], point.coordinates[0]]));
       this.map.invalidateSize(true);
-      this.map.fitBounds(bounds);
+      if (useBrowseMapBounds) {
+        // Fitting snaps down to a whole zoom level, which can leave the area small in the frame;
+        // browseMapZoomOffset zooms in that many levels further, keeping the same centre
+        const zoom = this.map.getBoundsZoom(bounds) + (environment.geospatialMapViewer.browseMapZoomOffset || 0);
+        this.map.setView(bounds.getCenter(), zoom);
+      } else {
+        this.map.fitBounds(bounds, this.getFitBoundsOptions());
+      }
     }, 500);
   }
 
@@ -315,7 +415,7 @@ export class GeospatialMapComponent implements AfterViewInit, OnInit, OnDestroy 
       });
       this.map.addLayer(markers);
       const bounds = L.latLngBounds(points.map(point => [point.latitude, point.longitude]));
-      this.map.fitBounds(bounds);
+      this.map.fitBounds(bounds, this.getFitBoundsOptions());
     } else {
       // If there are no points to draw, instead zoom out and show a tooltip
       this.map.setZoom(1);

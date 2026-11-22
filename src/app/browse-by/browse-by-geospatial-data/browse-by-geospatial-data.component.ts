@@ -10,6 +10,7 @@ import {
 import {
   ActivatedRoute,
   Params,
+  RouterLink,
 } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -25,14 +26,21 @@ import {
 } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
+import { BrowseService } from '../../core/browse/browse.service';
+import { BrowseEntrySearchOptions } from '../../core/browse/browse-entry-search-options.model';
+import { BrowseEntry } from '../../core/shared/browse-entry.model';
 import {
   getFirstCompletedRemoteData,
   getFirstSucceededRemoteDataPayload,
 } from '../../core/shared/operators';
 import { SearchService } from '../../core/shared/search/search.service';
 import { SearchConfigurationService } from '../../core/shared/search/search-configuration.service';
-import { hasValue } from '../../shared/empty.util';
+import {
+  hasValue,
+  isNotEmpty,
+} from '../../shared/empty.util';
 import { GeospatialMapComponent } from '../../shared/geospatial-map/geospatial-map.component';
+import { PaginationComponentOptions } from '../../shared/pagination/pagination-component-options.model';
 import { FacetValues } from '../../shared/search/models/facet-values.model';
 import { PaginatedSearchOptions } from '../../shared/search/models/paginated-search-options.model';
 
@@ -44,6 +52,7 @@ import { PaginatedSearchOptions } from '../../shared/search/models/paginated-sea
   imports: [
     AsyncPipe,
     GeospatialMapComponent,
+    RouterLink,
     TranslateModule,
   ],
   standalone: true,
@@ -62,9 +71,20 @@ export class BrowseByGeospatialDataComponent implements OnInit {
 
   public facetValues$: Observable<FacetValues> = of(null);
 
+  /**
+   * Browse index listed under the map, alphabetically (Τοποθεσία, dc.coverage.spatial)
+   */
+  public readonly locationBrowseId = 'location';
+
+  /**
+   * All values of the location browse index within the current scope, with item counts
+   */
+  public locations$: Observable<BrowseEntry[]> = of([]);
+
   constructor(
     private searchConfigurationService: SearchConfigurationService,
     private searchService: SearchService,
+    private browseService: BrowseService,
     protected route: ActivatedRoute,
   ) {}
 
@@ -75,6 +95,37 @@ export class BrowseByGeospatialDataComponent implements OnInit {
       map((params: Params) => params.scope),
     );
     this.facetValues$ = this.getFacetValues();
+    this.locations$ = this.getLocations();
+  }
+
+  /**
+   * Get every location browse entry (one page holds them all), in the index's alphabetical order
+   */
+  getLocations(): Observable<BrowseEntry[]> {
+    return this.scope$.pipe(
+      switchMap((scope) => {
+        const pagination = Object.assign(new PaginationComponentOptions(), {
+          id: 'map-locations',
+          currentPage: 1,
+          pageSize: 1000,
+        });
+        return this.browseService.getBrowseEntriesFor(
+          new BrowseEntrySearchOptions(this.locationBrowseId, pagination, undefined, undefined, scope));
+      }),
+      getFirstCompletedRemoteData(),
+      map((rd) => rd.hasSucceeded ? rd.payload.page : []),
+    );
+  }
+
+  /**
+   * Query params linking a location to its items on the location browse page
+   */
+  getLocationQueryParams(entry: BrowseEntry, scope: string): Params {
+    return {
+      value: entry.value,
+      authority: entry.authority || undefined,
+      scope: isNotEmpty(scope) ? scope : undefined,
+    };
   }
 
   /**

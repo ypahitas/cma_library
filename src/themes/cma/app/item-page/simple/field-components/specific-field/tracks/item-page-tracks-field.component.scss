@@ -1,0 +1,12 @@
+.track-time {
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
