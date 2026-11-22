@@ -6,6 +6,7 @@ import {
 import { Component } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { MenuSection } from 'src/app/shared/menu/menu-section.model';
 import { ThemedUserMenuComponent } from 'src/app/shared/auth-nav-menu/user-menu/themed-user-menu.component';
 
 import { NavbarComponent as BaseComponent } from '../../../../app/navbar/navbar.component';
@@ -28,4 +29,9 @@ import { slideMobileNav } from '../../../../app/shared/animations/slide';
   ],
 })
 export class NavbarComponent extends BaseComponent {
+  /** CMA: the menu shows only the stock "Statistics" entry of the dynamic public menu. */
+  isStatisticsSection(section: MenuSection): boolean {
+    const model = section.model;
+    return !!model && 'text' in model && model.text === 'menu.section.statistics';
+  }
 }

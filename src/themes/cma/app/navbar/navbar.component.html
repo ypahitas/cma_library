@@ -21,7 +21,7 @@
             <!-- CMA: only the stock "Statistics" entry from the dynamic menu. DSpace shows it only to users
                  allowed to view usage statistics (admins), and links to the statistics of the current page. -->
             @for (section of (sections | async); track section.id) {
-              @if (section.model?.text === 'menu.section.statistics') {
+              @if (isStatisticsSection(section)) {
                 <ng-container
                 *ngComponentOutlet="(sectionMap$ | async).get(section.id)?.component; injector: (sectionMap$ | async).get(section.id)?.injector;"></ng-container>
               }
