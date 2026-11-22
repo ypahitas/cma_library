@@ -8,7 +8,8 @@ import { RouterLink } from '@angular/router';
 import { Context } from '../../../../../../../../../app/core/shared/context.model';
 import { ViewMode } from '../../../../../../../../../app/core/shared/view-mode.model';
 import { ThemedBadgesComponent } from '../../../../../../../../../app/shared/object-collection/shared/badges/themed-badges.component';
-import { ItemSearchResult } from '../../../../../../../../../app/shared/object-collection/shared/item-search-result.model';
+import { ItemSearchResult } from '@dspace/core/shared/object-collection/item-search-result.model';
+import { MetadataDirective } from '../../../../../../../../../app/shared/metadata.directive';
 import { listableObjectComponent } from '../../../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ItemSearchResultListElementComponent as BaseComponent } from '../../../../../../../../../app/shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component';
 import { TruncatableComponent } from '../../../../../../../../../app/shared/truncatable/truncatable.component';
@@ -30,6 +31,7 @@ import { APP_CONFIG, AppConfig } from 'src/config/app-config.interface';
   // templateUrl: '../../../../../../../../../app/shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component.html',
   standalone: true,
   imports: [
+    MetadataDirective,
     AsyncPipe,
     NgClass,
     RouterLink,
@@ -60,13 +62,13 @@ export class ItemSearchResultListElementComponent extends BaseComponent {
 
   //CMA code because it seems dspace angular is ignoring metadata language codes
   //Dspace needs to add it in the dsoName service method GetHighlights? or getname
-  public getTranslatedTitle(){
+  public getTranslatedTitle(): MetadataValue {
     const defaultName =  this.dsoTitle;
     if (this.object.indexableObject){
       const allTitles: MetadataValue[] = this.object.indexableObject.allMetadata('dc.title');
       for (const metaDataValueItem of allTitles){
         if (metaDataValueItem.language === this.currentLang){
-          return metaDataValueItem.value;
+          return metaDataValueItem;
         }
       }
     }

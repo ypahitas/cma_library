@@ -3,6 +3,8 @@ ui:
   host: localhost
   port: 4000
   ssl: false
+  # Public URL. Angular 20 SSR only renders requests whose Host matches this (nginx sends the public host).
+  baseUrl: https://library.cyprusmusicarchive.org
 rest:
   ssl: true
   host: library.cyprusmusicarchive.org
@@ -33,7 +35,7 @@ homePage:
   # Enable or disable the Discover filters on the homepage
   showDiscoverFilters: false
 # Languages. DSpace Angular holds a message catalog for each of the following languages.
-defaultLanguage: el
+fallbackLanguage: el
 # When set to active, users will be able to switch to the use of this language in the user interface.
 languages:
   - code: el
