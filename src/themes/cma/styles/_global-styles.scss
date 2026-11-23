@@ -25,3 +25,160 @@
 .browse-map-container {
   height: 600px!important;
 }
+
+/*** Cookie consent banner (Orejime), styled to match the CMA site ***/
+.orejime-AppContainer .orejime-Notice {
+  background: var(--bs-white);
+  color: var(--bs-primary);
+  font-family: var(--bs-font-sans-serif);
+  font-size: 0.9rem;
+  border: 1px solid var(--bs-gray-300);
+  border-top: 4px solid var(--bs-success);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
+
+  @media (min-width: 990px) {
+    max-width: 360px;
+    border-radius: var(--bs-border-radius-lg);
+  }
+
+  .orejime-Notice-title,
+  .orejime-Notice-description,
+  .orejime-Notice-changes,
+  .orejime-Notice-purposes {
+    color: var(--bs-primary);
+    line-height: 1.5;
+  }
+
+  // The new wording explains the purposes itself
+  .orejime-Notice-purposes {
+    display: none;
+  }
+
+  .orejime-Notice-changes {
+    font-weight: 500;
+  }
+
+  .orejime-Notice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .orejime-Notice-actionItem {
+    margin: 0;
+  }
+
+  // Only accept / decline on the banner; settings stay reachable from the footer link
+  .orejime-Notice-actionItem--info {
+    display: none;
+  }
+}
+
+// Shared button look for the notice and the settings window
+.orejime-AppContainer,
+.orejime-ModalPortal {
+  .orejime-Button {
+    font-family: var(--bs-font-sans-serif);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--bs-border-radius-pill);
+    padding: 0.4rem 1.1rem;
+    border: 1px solid transparent;
+    margin-right: 0;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  // Accept: CMA green with dark text (white on this green is too faint to read)
+  .orejime-Button--save,
+  .orejime-Button--accept,
+  .orejime-Notice-actionItem--save > button,
+  .orejime-AppToggles-enableAll,
+  .orejime-Modal-saveButton {
+    color: var(--bs-secondary);
+    background-color: var(--bs-success);
+    border-color: var(--bs-success);
+
+    &:hover, &:focus {
+      background-color: #5aa99f;
+      border-color: #5aa99f;
+    }
+  }
+
+  // Decline: quiet outline
+  .orejime-Button--decline,
+  .orejime-AppToggles-disableAll {
+    color: var(--bs-primary);
+    background-color: transparent;
+    border-color: var(--bs-gray-400);
+
+    &:hover, &:focus {
+      background-color: var(--bs-gray-100);
+    }
+  }
+
+  // Options: plain text link
+  .orejime-Button--info,
+  .orejime-Notice-learnMoreButton {
+    color: var(--bs-primary);
+    background: none;
+    border-color: transparent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    &:hover, &:focus {
+      color: var(--bs-success);
+    }
+  }
+}
+
+// Settings window
+.orejime-ModalPortal {
+  .orejime-Modal {
+    background: var(--bs-white);
+    color: var(--bs-primary);
+    font-family: var(--bs-font-sans-serif);
+    border-radius: var(--bs-border-radius-lg);
+    border-top: 4px solid var(--bs-success);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+  }
+
+  .orejime-Modal-header,
+  .orejime-Modal-footer {
+    border-color: var(--bs-gray-300);
+  }
+
+  .orejime-Modal-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--bs-secondary);
+  }
+
+  .orejime-CategorizedAppList-title,
+  .orejime-AppItem-title {
+    color: var(--bs-secondary);
+  }
+
+  .orejime-AppItem-description,
+  .orejime-CategorizedAppList-description,
+  .orejime-AppItem-purposes,
+  .orejime-Modal-poweredByLink {
+    color: var(--bs-gray-600);
+  }
+
+  .orejime-AppItem-input:checked + .orejime-AppItem-label .orejime-AppItem-slider {
+    background-color: var(--bs-success);
+  }
+
+  .orejime-Modal-closeButton {
+    color: var(--bs-primary);
+  }
+
+  a {
+    color: var(--bs-link-color);
+  }
+}
