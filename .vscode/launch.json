@@ -2,27 +2,45 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch via NPM CMA",
+            "name": "Launch",
             "type": "node",
             "request": "launch",
-            "sourceMaps": true,
-            "webroot":"${workspaceRoot}/src",
-            "localRoot": "${workspaceFolder}/src",
-            "urlFilter": "http://localhost:4000/*",
-            "trace":true,
-            "runtimeExecutable": "npm",
+            "program": "${workspaceRoot}/dist/server/index.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
             "runtimeArgs": [
-                "run-script", "start:dev"
+                "--nolazy"
             ],
-            "port": 4000
-        }
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null
+        },
         {
-            "type": "msedge",
+            "name": "Attach",
+            "type": "node",
             "request": "attach",
-            "name": "Attach to edge",
-            "port": 9222,
-            "urlFilter": "http://localhost:4000/*",
-            "webRoot": "${workspaceFolder}"
-        }        
+            "port": 5858,
+            "address": "localhost",
+            "restart": false,
+            "sourceMaps": false,
+            "outDir": null,
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": null
+        },
+        {
+            "name": "Attach to Process",
+            "type": "node",
+            "request": "attach",
+            "processId": "${command.PickProcess}",
+            "port": 5858,
+            "sourceMaps": false,
+            "outDir": null
+        }
     ]
 }
