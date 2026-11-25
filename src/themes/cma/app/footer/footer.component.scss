@@ -1,0 +1,13 @@
+// CMA: one font size for all footer text (11px, ~20% smaller than the default 14px).
+// The base footer styles shrink <small> text and the link list separately, so links
+// nested in both ended up smaller than the rest; inherit the footer size instead.
+:host footer {
+  font-size: 0.6875rem;
+
+  small,
+  .bottom-footer ul li a,
+  .bottom-footer ul li .btn,
+  .bottom-footer ul li .btn-link {
+    font-size: inherit;
+  }
+}

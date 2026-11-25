@@ -1,6 +1,9 @@
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpParams,
+} from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -16,7 +19,6 @@ import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed
 import { TruncatableComponent } from '../../../../../app/shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
 import { Collection } from 'src/app/core/shared/collection.model';
-import { Bitstream } from 'src/app/core/shared/bitstream.model';
 import { HALEndpointService } from 'src/app/core/shared/hal-endpoint.service';
 
 @Component({
@@ -42,6 +44,9 @@ export class CommunityListComponent extends BaseComponent {
   communityList$: Observable<FlatNode[]>;
   communityListArray: FlatNode[];
   collectionTemp: Collection;
+  //collection id -> logo image URL
+  logoUrls: { [collectionId: string]: string } = {};
+  private logosRequested = false;
 
   constructor(
     protected http: HttpClient,
@@ -72,11 +77,11 @@ export class CommunityListComponent extends BaseComponent {
           this.communityListArray = response;
           //trigger UI for update
           this.cd.markForCheck();
-          //Now get their logos. CMA work around
+          //Now get their logos (all in one request). CMA work around
+          this.getCollectionLogos(this.communityListArray[0]);
           for (const communityUncasted of this.communityListArray) {
             if (communityUncasted.payload instanceof Collection){
               const collection: Collection = communityUncasted.payload as Collection;
-              this.getCollectionLogo(collection);
               this.getNumberOfItemsInCollection(collection);
             }
           }
@@ -85,22 +90,27 @@ export class CommunityListComponent extends BaseComponent {
     });
   }
 
-  //CMA - dspace image handling is not easy so did my own
-  getCollectionLogo(collection: Collection){
-    const logoInfoURL = collection._links.logo.href;
-    if (logoInfoURL){
-      this.http.get<Bitstream>(logoInfoURL).subscribe(response => {
-        if (response){
-          //getting image via collection id and updating it's source
-          const imgElement = document.getElementById(collection.id) as HTMLImageElement | null;
-          if (imgElement) {
-            imgElement.src = response._links.content.href;
-          }
-          //update UI
-          this.cd.markForCheck();
-        }
-      });
+  //CMA - fetch every collection of the community with its logo embedded, in a single
+  //request, instead of one logo lookup per collection, so the images can start loading sooner.
+  getCollectionLogos(communityNode: FlatNode) {
+    const collectionsURL = (communityNode?.payload as any)?._links?.collections?.href;
+    if (!collectionsURL || this.logosRequested) {
+      return;
     }
+    this.logosRequested = true;
+    const params = new HttpParams().set('embed', 'logo').set('size', '200');
+    this.http.get<any>(collectionsURL, { params }).subscribe(response => {
+      const logoUrls: { [collectionId: string]: string } = {};
+      for (const collection of response?._embedded?.collections ?? []) {
+        const href = collection._embedded?.logo?._links?.content?.href;
+        if (href) {
+          logoUrls[collection.id] = href;
+        }
+      }
+      this.logoUrls = logoUrls;
+      //update UI
+      this.cd.markForCheck();
+    });
   }
   //hacky way to get number of items in Collection
   getNumberOfItemsInCollection(collection: Collection) {

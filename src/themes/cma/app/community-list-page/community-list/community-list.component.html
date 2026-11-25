@@ -3,7 +3,9 @@
     <ng-container *ngFor="let collection of communityListArray">
         <div class="col-md pb-2" *ngIf="collection.payload.type === 'collection'">
           <div class="card h-100">
-            <img class="card-img-top" id="{{collection.id}}" src="" alt="Collection logo">
+            <img *ngIf="logoUrls[collection.id]; else noLogo" class="card-img-top" [src]="logoUrls[collection.id]"
+                 width="800" height="534" decoding="async" alt="{{collection.name}}">
+            <ng-template #noLogo><div class="card-img-top"></div></ng-template>
             <div class="card-body d-flex flex-column">            
               <h5 class="card-title">{{collection.name}}</h5>
               <p class="card-text">{{collection.payload.metadata["dc.description"][0].value}}</p>
