@@ -47,9 +47,7 @@ import { PROCESS_MODULE_PATH } from './process-page/process-page-routing.paths';
 import { viewTrackerResolver } from './statistics/angulartics/dspace/view-tracker.resolver';
 import { provideSubmissionState } from './submission/provide-submission-state';
 import { SUGGESTION_MODULE_PATH } from './suggestions-page/suggestions-page-routing-paths';
-import { CMACuratedSubjectsComponent } from '../themes/cma/app/cma-curated-subjects-page/cma-curated-subjects.component';
-import { CMAContactMeComponent } from '../themes/cma/app/contact-me-page/contact-me.component';
-import { CMAContributorsComponent } from '../themes/cma/app/contributors-page/contributors.component';
+import { CMA_ROUTES } from '../themes/cma/cma-routes'; // CMA hook: theme routes
 
 export const APP_ROUTES: Route[] = [
   { path: INTERNAL_SERVER_ERROR, component: ThemedPageInternalServerErrorComponent, data: { title: '500.page-internal-server-error' } },
@@ -82,25 +80,11 @@ export const APP_ROUTES: Route[] = [
           tracking: viewTrackerResolver,
         },
       },
+      ...CMA_ROUTES, // CMA hook: theme routes (src/themes/cma/cma-routes.ts)
       {
-        path: 'collection-list',
+        path: 'community-list',
         loadChildren: () => import('./community-list-page/community-list-page-routes')
           .then((m) => m.ROUTES),
-        canActivate: [endUserAgreementCurrentUserGuard],
-      },
-      {
-        path: 'curated-subjects',
-        component: CMACuratedSubjectsComponent,
-        canActivate: [endUserAgreementCurrentUserGuard],
-      },
-      {
-        path: 'contact-me',
-        component: CMAContactMeComponent,
-        canActivate: [endUserAgreementCurrentUserGuard],
-      },
-      {
-        path: 'contributors',
-        component: CMAContributorsComponent,
         canActivate: [endUserAgreementCurrentUserGuard],
       },
       {
