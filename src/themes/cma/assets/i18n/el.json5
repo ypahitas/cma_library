@@ -282,4 +282,6 @@
   "info.accessibility-settings.notificationTimeOut.invalid": "Το χρονικό όριο ειδοποιήσεων πρέπει να είναι μεγαλύτερο από 0",
   "info.accessibility-settings.liveRegionTimeOut.label": "Χρονικό όριο περιοχής ARIA Live (σε δευτερόλεπτα)",
   "info.accessibility-settings.liveRegionTimeOut.invalid": "Το χρονικό όριο της περιοχής ARIA Live πρέπει να είναι μεγαλύτερο από 0",
+  // The agreement text itself is DSpace's English template; the server is in Frankfurt, Germany
+  "info.end-user-agreement.hosting-country": "Germany",
 }
