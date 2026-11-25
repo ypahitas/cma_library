@@ -1,19 +1,23 @@
 @if (decades.length > 1) {
   <section class="cma-decades" aria-labelledby="cma-decades-heading">
     <h2 id="cma-decades-heading" class="cma-decades__heading">{{ 'cma.home.decades.heading' | translate }}</h2>
-    <ul class="cma-decades__bars">
+    <ul class="cma-decades__grid" [style.--cma-decades-n]="decades.length">
       @for (d of decades; track d.start) {
-        <li class="cma-decades__item">
-          <a class="cma-decades__link"
-             [routerLink]="['/search']" [queryParams]="queryParams(d)"
-             [attr.aria-label]="'cma.home.decades.link' | translate: { from: d.start, to: d.end, count: d.count }"
-             [attr.title]="'cma.home.decades.link' | translate: { from: d.start, to: d.end, count: d.count }">
-            <span class="cma-decades__plot" aria-hidden="true">
-              <span class="cma-decades__count">{{ d.count }}</span>
-              <span class="cma-decades__bar" [style.height.%]="height(d)"></span>
+        <li>
+          @if (d.count > 0) {
+            <a class="cma-decades__tile"
+               [routerLink]="['/search']" [queryParams]="queryParams(d)"
+               [attr.aria-label]="'cma.home.decades.link' | translate: { from: d.start, to: d.end, count: d.count }">
+              <span class="cma-decades__decade">{{ 'cma.home.decades.label' | translate: { start: d.start, short: short(d) } }}</span>
+              <span class="cma-decades__count">{{ (d.count === 1 ? 'cma.home.decades.count.one' : 'cma.home.decades.count') | translate: { count: d.count } }}</span>
+            </a>
+          } @else {
+            <span class="cma-decades__tile cma-decades__tile--empty"
+                  [attr.aria-label]="'cma.home.decades.empty' | translate: { from: d.start, to: d.end }">
+              <span class="cma-decades__decade">{{ 'cma.home.decades.label' | translate: { start: d.start, short: short(d) } }}</span>
+              <span class="cma-decades__count">–</span>
             </span>
-            <span class="cma-decades__label">{{ label(d) }}</span>
-          </a>
+          }
         </li>
       }
     </ul>

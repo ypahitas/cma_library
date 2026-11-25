@@ -1,6 +1,10 @@
 {
   "cma.home.decades.heading": "On yıllara göre kayıtlar",
   "cma.home.decades.link": "{{from}}–{{to}}: {{count}} öğe",
+  "cma.home.decades.label": "{{start}}'ler",
+  "cma.home.decades.count": "{{count}} öğe",
+  "cma.home.decades.count.one": "1 öğe",
+  "cma.home.decades.empty": "{{from}}–{{to}}: öğe yok",
   "cma-name": "Cyprus Music Archive",
   "cma-home-news-explore": "Explore audio and video recordings from different collections",
   "repository.title": "CMA Library",

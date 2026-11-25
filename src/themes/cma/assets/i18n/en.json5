@@ -1,6 +1,10 @@
 {
   "cma.home.decades.heading": "Recordings by decade",
   "cma.home.decades.link": "{{from}}–{{to}}: {{count}} items",
+  "cma.home.decades.label": "{{start}}s",
+  "cma.home.decades.count": "{{count}} items",
+  "cma.home.decades.count.one": "1 item",
+  "cma.home.decades.empty": "{{from}}–{{to}}: no items",
   "cma.home.news.library": "Cyprus Music Archive Library",
   "cma.home.news.explore": "Explore audio and video recordings from different collections",
   "repository.title": "CMA Library",

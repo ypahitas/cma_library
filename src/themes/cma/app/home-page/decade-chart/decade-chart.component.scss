@@ -1,4 +1,5 @@
-// CMA home page "Recordings by decade": quiet bars in the site's green under the search box.
+// CMA home page "Καταγραφές ανά δεκαετία": a full-width row of decade tiles under the search box,
+// in the site's green and light type. Tiles share the width equally; on narrow screens they wrap.
 :host {
   display: block;
 }
@@ -15,41 +16,40 @@
   margin-bottom: 0.75rem;
 }
 
-.cma-decades__bars {
-  display: flex;
-  align-items: stretch;
+.cma-decades__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cma-decades-n, 8), minmax(0, 1fr));
   gap: 0.5rem;
   list-style: none;
   margin: 0;
-  padding: 0 0 0.25rem;
-  border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+  padding: 0;
 }
 
-.cma-decades__item {
-  flex: 1 1 0;
-  max-width: 5.5rem;
-  min-width: 0;
-}
-
-.cma-decades__link {
+.cma-decades__tile {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
   height: 100%;
+  padding: 0.85rem 0.25rem;
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.375rem;
+  background-color: var(--bs-body-bg, #fff);
   color: inherit;
+  text-align: center;
   text-decoration: none;
-  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
 
+a.cma-decades__tile {
   &:hover,
   &:focus-visible {
     text-decoration: none;
+    border-color: var(--bs-link-color, #72C4B9);
+    background-color: rgba(114, 196, 185, 0.08);
 
-    .cma-decades__bar {
-      background-color: var(--bs-link-hover-color, #4aa094);
-    }
-
-    .cma-decades__count,
-    .cma-decades__label {
+    .cma-decades__decade {
       color: var(--bs-link-hover-color, #4aa094);
     }
   }
@@ -60,55 +60,52 @@
   }
 }
 
-.cma-decades__plot {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  height: 7rem;
-}
-
-.cma-decades__count {
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: var(--bs-secondary-color, #6c757d);
-  font-variant-numeric: tabular-nums;
-}
-
-.cma-decades__bar {
-  display: block;
-  width: 100%;
-  max-width: 3rem;
-  background-color: var(--bs-link-color, #72C4B9);
-  border-radius: 0.2rem 0.2rem 0 0;
-  transition: background-color 0.15s ease-in-out;
-}
-
-.cma-decades__label {
-  margin-top: 0.4rem;
-  font-size: 0.8rem;
+.cma-decades__decade {
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.2;
   white-space: nowrap;
   color: var(--bs-body-color, #4E4E4E);
   font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 575.98px) {
-  .cma-decades__bars {
-    gap: 0.25rem;
+.cma-decades__count {
+  font-size: 0.8rem;
+  color: var(--bs-link-color, #72C4B9);
+  font-variant-numeric: tabular-nums;
+}
+
+.cma-decades__tile--empty {
+  border-style: dashed;
+  background-color: transparent;
+
+  .cma-decades__decade,
+  .cma-decades__count {
+    color: var(--bs-secondary-color, #adb5bd);
+    opacity: 0.7;
+  }
+}
+
+// tablets: up to 4 tiles a row
+@media (max-width: 767.98px) {
+  .cma-decades__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+// phones: 2 a row, a little smaller
+@media (max-width: 399.98px) {
+  .cma-decades__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .cma-decades__plot {
-    height: 5rem;
-  }
-
-  .cma-decades__label {
-    font-size: 0.7rem;
+  .cma-decades__decade {
+    font-size: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cma-decades__bar {
+  .cma-decades__tile {
     transition: none;
   }
 }

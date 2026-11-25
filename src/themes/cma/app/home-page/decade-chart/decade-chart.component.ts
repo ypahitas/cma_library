@@ -25,7 +25,7 @@ import {
   AppConfig,
 } from 'src/config/app-config.interface';
 
-/** One bar: a decade and how many items visitors can find in it. */
+/** One tile: a decade and how many items visitors can find in it. */
 export interface CmaDecade {
   start: number;
   end: number;
@@ -33,10 +33,11 @@ export interface CmaDecade {
 }
 
 /**
- * CMA home page: "Recordings by decade". One bar per decade of dc.date.issued (the recording year),
- * each linking to the search page with that date range, the same filter as the search page's date slider.
- * Counts come from the public search API in the visitor's browser, so they only count what visitors can
- * see, and empty decades are left out. Nothing is shown if the counts can't be loaded.
+ * CMA home page: "Καταγραφές ανά δεκαετία". A full-width row of tiles, one per decade of dc.date.issued
+ * (the recording year) from the first to the last decade with items, each linking to the search page with that date range (the same
+ * filter as the search page's date slider). Counts come from the public search API in the visitor's browser,
+ * so they only count what visitors can see. Empty decades inside the range are shown greyed out, not linked.
+ * Nothing is shown if the counts can't be loaded.
  */
 @Component({
   selector: 'ds-cma-decade-chart',
@@ -51,7 +52,6 @@ export interface CmaDecade {
 export class CmaDecadeChartComponent implements OnInit {
 
   decades: CmaDecade[] = [];
-  max = 0;
 
   constructor(
     private http: HttpClient,
@@ -79,6 +79,7 @@ export class CmaDecadeChartComponent implements OnInit {
         if (!range) {
           return of([]);
         }
+        // from the first to the last decade that has items, whatever the data holds
         const starts: number[] = [];
         for (let y = Math.floor(range[0] / 10) * 10; y <= range[1]; y += 10) {
           starts.push(y);
@@ -91,23 +92,24 @@ export class CmaDecadeChartComponent implements OnInit {
       }),
       catchError(() => of([])),
     ).subscribe((decades) => {
-      this.decades = decades.filter((d) => d.count > 0);
-      this.max = Math.max(0, ...this.decades.map((d) => d.count));
+      // empty decades at either end are dropped; empty ones in between stay, greyed out
+      while (decades.length && decades[decades.length - 1].count === 0) {
+        decades.pop();
+      }
+      while (decades.length && decades[0].count === 0) {
+        decades.shift();
+      }
+      this.decades = decades;
       this.cdr.markForCheck();
     });
-  }
-
-  /** Bar height in percent of the tallest; never so small that a bar with items disappears. */
-  height(d: CmaDecade): number {
-    return this.max ? Math.max(6, Math.round(100 * d.count / this.max)) : 0;
   }
 
   queryParams(d: CmaDecade) {
     return { 'f.dateIssued.min': d.start, 'f.dateIssued.max': d.end };
   }
 
-  /** "1990–99" */
-  label(d: CmaDecade): string {
-    return `${d.start}–${String(d.end).slice(2)}`;
+  /** Two-digit end of the decade, for labels like "1990–99". */
+  short(d: CmaDecade): string {
+    return String(d.end).slice(2);
   }
 }
