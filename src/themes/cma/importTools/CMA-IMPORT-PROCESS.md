@@ -290,3 +290,14 @@ Store numbers 1 and 2 are taken by DSpace's cloud stores, and 3 is the first ext
 - Built by hand (not `build_saf.py`): metadata for volumes 1–2 from the sheet; volume 3 is not in the sheet, so its Greek titles were written from the Latin filenames and durations read from the WAVs (notes on the item ask for checks). Volume 1's people/place/year (1979) used for the whole item.
 - All 28 files checked by md5 on store 3; downloads deleted.
 
+### Συνεντεύξεις – Ραδιόφωνο (CD, DAT, Κασέττες), 25 November 2026
+- 29 items, 123456789/90–118, 147 files (17.9 GB), map `import/saf-radio-20261125.map`, overrides `import/overrides-tterlikkas-radio.json` (titles written at import, all to be checked).
+- `--by-file` now matches each sheet row to its file by column G (folder files are named after G), lists subfolders (e.g. Πρωτοχρονιά / Φώτα / Χριστούγεννα) as headings, and writes the contents list one line per file ("1 - title"; the file name when the sheet has no row for it; times only when several rows share one file). DAT sections name the tape only in G; that is used as the item id.
+- DAT 24, 31, 41, 117: contents list taken from `Περιεχόμενα Συν. 2.docx` with times ("00:04:55 — …"). DAT 41 holds two programmes (2.1.1999 and 9.1.1999); the second one's heading ran into the 00:21:28 line. Re-edit.
+- The other `Περιεχόμενα` Word files are copied into each item's cataloguing note; all 6 are kept in `import/workbook/radio-docs/`.
+- Renamed before building: "Πασιαρδής 16.12. 12.wav" → "Πασιαρδής - 16.12. 12.wav" (sheet name).
+- To check: Αφιέρωμα στον Γ. Αβέρωφ (1990) has ΟΛΟΚΛΗΡΟ + Α΄/Β΄ ΜΕΡΟΣ + 1–7, probably the same audio twice; «Εμείς και ο κόσμος μας – Αγνάρκα» has no year.
+- All 147 files checked by md5 on store 3; uploads and build folders deleted. Test builds outside `import/` hold hard links to the WAVs: delete them too, or the disk space isn't freed.
+- 25 Nov, later: at the user's request the duplicate «Α΄ ΜΕΡΟΣ» and «Β΄ ΜΕΡΟΣ» files of «Αφιέρωμα στον Γεώργιο Αβέρωφ» (123456789/97) were removed (bundle link and policies deleted, bitstream marked deleted; contents list now 1–7 + "Ολόκληρη η εκπομπή"). «Εμείς και ο κόσμος μας – Αγνάρκα» (123456789/104) got the year 2002.
+- Removing a file: `dspace cleanup` skips files changed in the last hour (`bitstream.cleanup.isRecent.hours`), so run it again an hour after the import or removal, or the file stays on disk.
+

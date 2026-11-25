@@ -171,6 +171,59 @@ def xml(schema, vals):
     return s + '</dublin_core>\n'
 
 
+def _nk(x):
+    """Name key for matching sheet column G to a file name: letters/digits only, lower case, no accents."""
+    x = unicodedata.normalize('NFD', x.lower())
+    return ''.join(c for c in x if c.isalnum())
+
+
+def _strip_num(x):
+    return re.sub(r'^\s*\d+\s*[.)-]?\s*', '', x)
+
+
+def match_files(fd, rows):
+    """--by-file with a programme folder: list its WAVs (subfolders too) and match each sheet row to one
+    by column G ("1. Κάλντα της Πρωτοχρονιάς", "Μέρος Α", or just "3"). Returns (files, row_file)
+    where files are paths relative to fd in the order the item should list them (sheet order first,
+    unmatched files after) and row_file[i] is the file of rows[i] or None."""
+    wavs = []
+    for dp, _, fs in os.walk(fd):
+        for f in fs:
+            if f.lower().endswith('.wav') and not f.startswith('._'):
+                wavs.append(os.path.relpath(os.path.join(dp, f), fd))
+    num = lambda f: int(m[0]) if (m := re.match(r'\d+', os.path.basename(f))) else 10**6
+    wavs.sort(key=lambda f: (os.path.dirname(f), num(f), f))
+    row_file, used, last_dir = [], [], None
+    for r in rows:
+        g = r.get('G', '').strip()
+        hit = None
+        if g:
+            gk, gs = _nk(g), _nk(_strip_num(g))
+            cands = []
+            for f in wavs:
+                stem = os.path.basename(f)[:-4]
+                fk, fs = _nk(stem), _nk(_strip_num(stem))
+                if re.fullmatch(r'\d+', g):
+                    ok = num(f) == int(g)
+                else:
+                    ok = fk == gk or (gs and fs and (fs.startswith(gs) or gs.startswith(fs)))
+                if ok:
+                    cands.append(f)
+            if len(cands) > 1 and last_dir is not None:  # same number in several subfolders: stay in the current one
+                same = [f for f in cands if os.path.dirname(f) == last_dir]
+                later = [f for f in cands if f not in used]
+                cands = same or later or cands
+            hit = cands[0] if cands else None
+        if hit is None and row_file and row_file[-1]:
+            hit = row_file[-1]  # no G of its own: same file as the row above
+        row_file.append(hit)
+        if hit:
+            last_dir = os.path.dirname(hit)
+            if hit not in used:
+                used.append(hit)
+    return used + [f for f in wavs if f not in used], row_file
+
+
 def main():
     a = sys.argv[1:]
     only = None
@@ -193,8 +246,11 @@ def main():
         if by_file:
             if r.get('A', '').strip() and r['A'].strip() != sec:
                 sec = r['A'].strip(); rid = ''
+            g = r.get('G', '').strip()
             if r.get('F', '').strip():
                 rid = r['F'].strip(); section[rid] = sec
+            elif re.fullmatch(r'DAT ?\d+\w*', g):  # DAT sections name the tape in column G only
+                rid = g; section[rid] = sec
             if rid:
                 groups.setdefault(rid, []).append(r)
             continue
@@ -255,13 +311,50 @@ def main():
                     types.append(t.strip())
         toc = '\n'.join(f"{hms(r.get('E', ''))} — {r.get('D', '').strip()}" for r in rows)
         if by_file:
-            def tline(r):
-                f, e, d = r.get('G', '').strip(), r.get('E', '').strip(), r.get('D', '').strip()
+            # Contents list in the CMA style: "1 - Greek title", a heading per subfolder, no file names;
+            # the time only when several rows share one file (where in that file the part is).
+            plan_files, row_file = ([], [None] * len(rows))
+            if o.get('files_dir'):
+                plan_files, row_file = match_files(os.path.join(audio_dir, o['files_dir']), rows)
+                for r, f in zip(rows, row_file):
+                    if f is None:
+                        print(f"WARNING {rid}: no file for sheet row G={r.get('G', '')!r} D={r.get('D', '')[:40]!r}")
+            def tm(r):
+                e = r.get('E', '').strip()
                 e = ' – '.join(hms(x.strip()) for x in re.split(r'\s+-\s+', e)) if e else ''
-                if o.get('files_dir') and re.match(r'\d', f):
-                    f = 'Αρχείο ' + f
-                return ' · '.join(x for x in (f, e, d or '(χωρίς τίτλο)') if x)
-            toc = '\n'.join(tline(r) for r in rows)
+                return '' if e in ('', '00:00:00') else e
+            def title(r):
+                d = r.get('D', '').strip() or '(χωρίς περιγραφή)'
+                g = r.get('G', '').strip()
+                if g and not re.fullmatch(r'[\d, ]+', g) and sum(x.get('D', '').strip() == r.get('D', '').strip() for x in rows) > 1:
+                    d += f' ({_strip_num(g)})'  # same title twice (Μέρος Α / Μέρος Β): say which part
+                return d
+            out_lines = []
+            if o.get('files_dir'):
+                # one line per file, in the item's file order; the sheet's title where it describes the file,
+                # else the file name; several sheet rows in one file are listed under it with their times
+                plan_files.sort(key=lambda f: (os.path.dirname(f), int(m[0]) if (m := re.match(r'\d+', os.path.basename(f))) else 10**6, f))
+                n, cur = 0, None
+                for f in plan_files:
+                    sub = os.path.dirname(f)
+                    if sub != cur:
+                        if sub:
+                            out_lines.append(sub)
+                        n, cur = 0, sub
+                    n += 1
+                    mine = [r for r, rf in zip(rows, row_file) if rf == f]
+                    if len(mine) == 1:
+                        out_lines.append(f'{n} - {title(mine[0])}')
+                    elif mine:
+                        out_lines.append(f'{n} - ' + '; '.join(title(r) + (f' ({tm(r)})' if tm(r) else '') for r in mine))
+                    else:
+                        out_lines.append(f"{n} - {re.sub(r'[ .]+$', '', _strip_num(os.path.basename(f)[:-4])) or '(χωρίς περιγραφή)'}")
+                if len(plan_files) == 1:
+                    out_lines = []
+            elif len(rows) > 1:
+                for n, r in enumerate(rows, 1):
+                    out_lines.append(f'{n} - {title(r)}' + (f' ({tm(r)})' if tm(r) else ''))
+            toc = o.get('toc') or '\n'.join(out_lines)
         notes = []
         for r in rows:
             q = r.get('Q', '').strip()
@@ -298,7 +391,17 @@ def main():
         if o.get('files_dir'):
             # one item, several files: every WAV in AUDIO_DIR/<files_dir>, in the order of their leading number
             fd = os.path.join(audio_dir, o['files_dir'])
-            wavs = sorted((f for f in os.listdir(fd) if f.lower().endswith('.wav') and not f.startswith('._')),
+            if by_file:
+                lines = []
+                for f in plan_files:
+                    name = f.replace(os.sep, ' - ')  # subfolder files: "Πρωτοχρονιά - 1. Κάλντα ….wav"
+                    dst = os.path.join(d, name)
+                    if not os.path.exists(dst):
+                        os.link(os.path.join(fd, f), dst)
+                    lines.append(f'{name}\tbundle:ORIGINAL\n')
+                open(os.path.join(d, 'contents'), 'w', encoding='utf-8').write(''.join(lines))
+                wav = None
+            wavs = [] if by_file else sorted((f for f in os.listdir(fd) if f.lower().endswith('.wav') and not f.startswith('._')),
                           key=lambda f: (int(re.match(r'\d+', f)[0]) if re.match(r'\d+', f) else 10**6, f))
             lines = []
             for f in wavs:
@@ -306,12 +409,13 @@ def main():
                 if not os.path.exists(dst):
                     os.link(os.path.join(fd, f), dst)
                 lines.append(f'{f}\tbundle:ORIGINAL\n')
-            if len(wavs) != len(rows):
+            if not by_file and len(wavs) != len(rows):
                 print(f'WARNING {rid}: {len(wavs)} files in {fd} but {len(rows)} tracks in the sheet')
-            open(os.path.join(d, 'contents'), 'w', encoding='utf-8').write(''.join(lines))
+            if not by_file:
+                open(os.path.join(d, 'contents'), 'w', encoding='utf-8').write(''.join(lines))
             wav = None
         else:
-            wav = h['F'].strip() + '.wav'
+            wav = (h['F'].strip() or rid) + '.wav'
             src = os.path.join(audio_dir, wav)
         if wav is None:
             pass
