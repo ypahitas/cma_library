@@ -16,7 +16,8 @@ Item-level values are taken from the first row of each recording.
 overrides.json, one entry per recording id. Every key is optional except "title":
   {"CD2": {"title": "...", "people": ["..."], "curated": ["Τραγούδια"],
            "drop_keywords": ["Πάει"], "extra_keywords": ["..."], "hidden_keywords": ["..."],
-           "relation": ["..."], "source": ["..."], "location": "...", "year": "1972"}}
+           "relation": ["..."], "source": ["..."], "location": "...", "year": "1972",
+           "note": "admin-only note", "files_dir": "folder of numbered WAVs, all into this one item"}}
 
 Keywords: single words from L become dc.subject (shown). Multi-word entries from L (phrases, lyrics,
 titles), "hidden_keywords", and the plain spelling of Cypriot keywords go to local.keyword.hidden:
@@ -121,6 +122,18 @@ CYPRIOT_SPELLINGS = {
 }
 
 
+def plain_forms(v):
+    """Spellings of v without the combining breve (U+0306), as people type them.
+    The breve is dropped (Σ̆ια -> Σια, Τσ̆ιαττιστά -> Τσιαττιστά); before α/ο/ω it is also written
+    as ι (Τζ̆αννής -> Τζαννής and Τζιαννής, Σ̆ούφτας -> Σούφτας and Σιούφτας)."""
+    d = unicodedata.normalize('NFD', v)
+    if '\u0306' not in d:
+        return []
+    with_i = re.sub('\u0306(?=[αοωΑΟΩ])', 'ι', d)
+    out = [d.replace('\u0306', ''), with_i.replace('\u0306', '')]
+    return list(dict.fromkeys(unicodedata.normalize('NFC', x) for x in out))
+
+
 def cypriot(k):
     k = unicodedata.normalize('NFC', k)
     return CYPRIOT_SPELLINGS.get(k, k)
@@ -164,6 +177,9 @@ def main():
     auto = '--auto' in a
     if auto:
         a.remove('--auto')
+    by_file = '--by-file' in a  # radio etc.: column A is a section, every new F (programme file/folder) starts an item
+    if by_file:
+        a.remove('--by-file')
     if '--only' in a:
         i = a.index('--only'); only = set(a[i + 1].split(',')); del a[i:i + 2]
     sheet, name, ovf, audio, out = a
@@ -171,7 +187,17 @@ def main():
     groups = {}
     rid = ''
     allrows = [r for r in read_sheet(sheet, name) if any(v.strip() for k, v in r.items() if k != 'A')]
+    section = {}
+    sec = ''
     for i, r in enumerate(allrows):
+        if by_file:
+            if r.get('A', '').strip() and r['A'].strip() != sec:
+                sec = r['A'].strip(); rid = ''
+            if r.get('F', '').strip():
+                rid = r['F'].strip(); section[rid] = sec
+            if rid:
+                groups.setdefault(rid, []).append(r)
+            continue
         if r.get('A', '').strip():
             rid = r['A'].strip()
         elif r.get('F', '').strip() and any(x.get('F', '').strip() for x in groups.get(rid, [])):
@@ -186,15 +212,24 @@ def main():
         if rid not in ov and not auto:
             print(f'SKIP {rid}: no entry in overrides.json'); continue
         o, h = dict(ov.get(rid, {})), rows[0]
+        audio_dir = os.path.join(audio, section[rid]) if by_file else audio
+        if by_file and not os.path.isdir(audio_dir):
+            continue  # section not in this upload (its folder under AUDIO_DIR is named after column A)
+        if by_file and 'files_dir' not in o and os.path.isdir(audio_dir):
+            nk = lambda x: re.sub(r'\s+', '', x).lower()
+            d_hit = [x for x in os.listdir(audio_dir) if os.path.isdir(os.path.join(audio_dir, x)) and nk(x) == nk(rid)]
+            if d_hit:
+                o['files_dir'] = d_hit[0]
         if 'title' not in o:  # --auto: take the title from the sheet, to be edited later
             o['title'] = (h.get('GT') or h.get('H') or h.get('D') or rid).strip()
         people = o.get('people') or [p.strip() for p in h.get('K', '').split(',') if p.strip()]
+        people = list(dict.fromkeys('Μιχάλης Ττερλικκάς' if p in ('Μ. Ττερλικκάς', 'Μ.Ττερλικκάς') else p for p in people))
         ys = years(h.get('B', '')) or years(*[r.get('DATE', '') for r in rows])
         year = o.get('year') or (str(min(ys)) if ys else '')
         raw_year = h.get('B', '').strip()
         if not year:
             print(f'WARNING {rid}: no year found')
-        locations = [o['location']] if o.get('location') else list(dict.fromkeys(x.strip(' ;') for x in h.get('M', '').split(',') if x.strip(' ;')))
+        locations = ([o['location']] if isinstance(o['location'], str) else o['location']) if o.get('location') else list(dict.fromkeys(x.strip(' ;') for x in h.get('M', '').split(',') if x.strip(' ;')))
         location = ', '.join(locations)
         points = coords(h.get('N', ''))
         keywords = []
@@ -207,12 +242,26 @@ def main():
         for k in phrases(rows, set(o.get('drop_keywords', []))) + o.get('hidden_keywords', []) + plain:
             if k.lower() not in (x.lower() for x in hidden + keywords):
                 hidden.append(k)
+        # Plain spellings (no breve) of every name, place and keyword written with a breve, so a search
+        # typed without the breve (Τζιαννής, Σια, Τσιαττιστά) still finds the item.
+        for v in keywords + people + locations + list(hidden):
+            for pv in plain_forms(v):
+                if pv.lower() not in (x.lower() for x in hidden + keywords):
+                    hidden.append(pv)
         types = []
         for r in rows:
             for t in r.get('J', '').split(','):
                 if t.strip() and t.strip() not in types:
                     types.append(t.strip())
         toc = '\n'.join(f"{hms(r.get('E', ''))} — {r.get('D', '').strip()}" for r in rows)
+        if by_file:
+            def tline(r):
+                f, e, d = r.get('G', '').strip(), r.get('E', '').strip(), r.get('D', '').strip()
+                e = ' – '.join(hms(x.strip()) for x in re.split(r'\s+-\s+', e)) if e else ''
+                if o.get('files_dir') and re.match(r'\d', f):
+                    f = 'Αρχείο ' + f
+                return ' · '.join(x for x in (f, e, d or '(χωρίς τίτλο)') if x)
+            toc = '\n'.join(tline(r) for r in rows)
         notes = []
         for r in rows:
             q = r.get('Q', '').strip()
@@ -226,6 +275,10 @@ def main():
         dc += [('type', None, t) for t in types]
         dc += [('coverage', 'spatial', x) for x in locations]
         dc.append(('identifier', 'other', rid))
+        if o.get('note'):
+            notes.append(o['note'])
+        if rid in ov and ov[rid].get('title') and not h.get('GT', '').strip():
+            notes.append('Ο τίτλος γράφτηκε κατά την εισαγωγή με βάση την περιγραφή (δεν υπήρχε στο φύλλο). Να ελεγχθεί.')
         if raw_year and not re.fullmatch(r'\d{4}(\.0)?', raw_year):
             notes.append(f'Χρονολογία στο φύλλο: {raw_year}')
         dc += [('subject', None, k) for k in keywords]
@@ -242,20 +295,41 @@ def main():
             lat, lon = points[0]
             open(os.path.join(d, 'metadata_dcterms.xml'), 'w', encoding='utf-8').write(
                 xml('dcterms', [('spatial', None, f'point({lon} {lat})')]))
-        wav = h['F'].strip() + '.wav'
-        src = os.path.join(audio, wav)
-        if not os.path.exists(src) and os.path.isdir(audio):  # same name ignoring case/spaces
-            want = re.sub(r'\s+', ' ', wav).lower()
-            hit = [f for f in os.listdir(audio) if re.sub(r'\s+', ' ', f).lower() == want]
+        if o.get('files_dir'):
+            # one item, several files: every WAV in AUDIO_DIR/<files_dir>, in the order of their leading number
+            fd = os.path.join(audio_dir, o['files_dir'])
+            wavs = sorted((f for f in os.listdir(fd) if f.lower().endswith('.wav') and not f.startswith('._')),
+                          key=lambda f: (int(re.match(r'\d+', f)[0]) if re.match(r'\d+', f) else 10**6, f))
+            lines = []
+            for f in wavs:
+                dst = os.path.join(d, f)
+                if not os.path.exists(dst):
+                    os.link(os.path.join(fd, f), dst)
+                lines.append(f'{f}\tbundle:ORIGINAL\n')
+            if len(wavs) != len(rows):
+                print(f'WARNING {rid}: {len(wavs)} files in {fd} but {len(rows)} tracks in the sheet')
+            open(os.path.join(d, 'contents'), 'w', encoding='utf-8').write(''.join(lines))
+            wav = None
+        else:
+            wav = h['F'].strip() + '.wav'
+            src = os.path.join(audio_dir, wav)
+        if wav is None:
+            pass
+        elif not os.path.exists(src) and os.path.isdir(audio_dir):  # same name ignoring case/spaces
+            want = re.sub(r'\s+', '', wav).lower()
+            hit = [f for f in os.listdir(audio_dir) if re.sub(r'\s+', '', f).lower() == want]
             if hit:
-                wav = hit[0]; src = os.path.join(audio, wav)
-        if os.path.exists(src):
+                wav = hit[0]; src = os.path.join(audio_dir, wav)
+        if wav is None:
+            pass
+        elif os.path.exists(src):
             dst = os.path.join(d, wav)
             if not os.path.exists(dst):
                 os.link(src, dst)
         else:
             print(f'WARNING {rid}: audio file missing: {src}')
-        open(os.path.join(d, 'contents'), 'w', encoding='utf-8').write(f'{wav}\tbundle:ORIGINAL\n')
+        if wav is not None:
+            open(os.path.join(d, 'contents'), 'w', encoding='utf-8').write(f'{wav}\tbundle:ORIGINAL\n')
         print(f'== {rid}: {o["title"]}\n   {year} | {", ".join(people)} | {location} | {", ".join(types)}'
               f'\n   {len(rows)} tracks | keywords: {", ".join(keywords)}'
               f'\n   hidden search keywords: {len(hidden)}{" (" + "; ".join(hidden[:5]) + ("; …" if len(hidden) > 5 else "") + ")" if hidden else ""}'

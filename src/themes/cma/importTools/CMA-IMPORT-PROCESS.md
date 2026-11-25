@@ -40,6 +40,7 @@ One row per track. Rows for the same recording share the same value in column A 
 Watch out for:
 - The **workbook has more than one sheet** for the same recordings. Nicoletta's sheet had CD1–CD5 and CD7; CD6 was only in the "Ήχος" sheet. Check all sheets before deciding something is missing.
 - **DAT1 was split into two recordings, DAT1A and DAT1B** (files `DAT 1A` and `DAT 1B`). There is no single "DAT1" item. Their continuation rows have column A empty, so tracks are grouped by the "Filename in Ήχος" column, and those values still read `DAT1.x` for both halves (DAT1.1–8 = DAT1A, DAT1.9–23 = DAT1B).
+- **ΚΑΣ.5 (Κασέτα 5) is one item with many files.** It was digitised as 8 separate WAVs (`1. Ο Μελής τζ' η Ζαχαρού.wav` … `8. Το Χρυσόψαρον  και η αχόρταη.wav`) in a folder `Κασέτα 5`, not one `Κασέτα 5 RESTORED.wav`. Import all 8 into the same item, in track order (the sheet's Time column says `Track 1` … `Track 8`, matching the file numbers). Other recordings that arrive as a folder of numbered files are handled the same way.
 - **Coordinates** in the sheet are `lat, lon` (Google Maps order). DSpace needs `point(lon lat)`. The script swaps them.
 - **Names** are spelled inconsistently between columns (e.g. Σορόκκος / Σορόκκου). Pick one and set it with `"people"` in the overrides file.
 
@@ -82,6 +83,8 @@ Watch out for:
 | Βιολί, Λαούτο, Ταμπουτσ̆ιά, Ζουρνάς-νταούλι | That instrument is played |
 
 **Cypriot spellings (breve).** `Τσ̆ιαττιστά` and `Ταμπουτσ̆ιά` are stored with a combining breve on σ (σ + U+0306). You can type them in the plain spelling (`Τσιαττιστά`, `Ταμπουτσιά`) anywhere: column L, `"curated"` or `"extra_keywords"`. `build_saf.py` converts them to the breve form for `dc.subject` and also adds the plain form as a hidden search keyword (`local.keyword.hidden`), so searches without the breve still find the item. To add another word like this, add it to `CYPRIOT_SPELLINGS` at the top of `build_saf.py`, and change the curated page to match if it's a curated topic.
+
+**Plain spellings of every breve word (since 25 November 2026).** For every keyword, person and place written with a breve, `build_saf.py` also adds the spelling without it as a hidden search keyword, so a search typed without the breve still finds the item. Where the breve comes before α/ο/ω it adds both common plain forms: `Τζ̆αννής` → `Τζαννής` and `Τζιαννής`, `Σ̆ούφτας` → `Σούφτας` and `Σιούφτας`; otherwise just drops it (`Σ̆ια` → `Σια`). The 21 items imported before this got the same values added on 25 November (backups in `/home/dspace/backups/items/*-before-plain.json`).
 
 **Hidden search keywords (`local.keyword.hidden`).** Words or phrases that should find the item in search but never appear on the site. Visitors can't see them anywhere (item page, full record, search results, OAI); admins see them when logged in. `build_saf.py` fills the field with:
 - every multi-word entry of column L, as typed (one value per comma-separated entry; `"drop_keywords"` removes them too),
@@ -195,6 +198,12 @@ Frontend changes need a rebuild. The site gives errors while `npm run build:prod
 
 Map file: `/home/dspace/import/saf-tterlikkas-20261121.map`.
 
+**25 November 2026: DAT tapes.** 60 recordings (DAT1A–DAT 99) imported from "Nicolettas sheet" with `--auto` behaviour plus `/home/dspace/import/overrides-tterlikkas-dat.json` (titles only, written from the descriptions; each such item has an admin note saying the title must be checked). Handles 123456789/16–75. Map file: `/home/dspace/import/saf-dat-20261125.map`. All 60 files were checked against the uploads by checksum, are in store 3, and the uploads were then deleted. DAT 1A/1B were uploaded as MP4s only, so they were cut losslessly from `DAT 1 RESTORED.wav` at 823.92 s (the MP4 durations add up to the master). The cut was checked by ear on 25 November and the master and MP4s were then deleted from the server (originals remain on the PC).
+
+**25 November 2026: cassettes and ΜΕΜ.** ΚΑΣ.1–5 and ΜΕΜ.1–3, handles 123456789/76–83, overrides `/home/dspace/import/overrides-tterlikkas-kas.json`, map file `/home/dspace/import/saf-kas-20261125.map`. ΚΑΣ.5 holds its 8 files in one item (`"files_dir"`). The ΜΕΜ files arrived as `1. Τρεις Καλοήροι RESTORED.wav` etc. and were renamed to the sheet's names. All 15 files checked by checksum, then the uploads were deleted.
+
+**25 November 2026: microcassettes.** ΜΙΚ.1 and ΜΙΚ.6, handles 123456789/84–85, overrides `/home/dspace/import/overrides-tterlikkas-mik.json`, map file `/home/dspace/import/saf-mik-20261125.map`. Names matched to the existing items (Δημήτρης Κατσαρής, with «Πιτρακκής» as a hidden keyword; Τζ̆αννής / Μαριαννού Πουλλή as in ΚΑΣ.1–2). Files checked by checksum, uploads deleted.
+
 ## 8. Storage: two disks, and when to switch
 
 Set up on 23 November 2026. DSpace stores files in numbered **stores**. New files (website uploads and imports) go to the one store set in `/home/dspace/dspace/dspace/config/local.cfg`:
@@ -266,3 +275,18 @@ Store numbers 1 and 2 are taken by DSpace's cloud stores, and 3 is the first ext
 - After a reboot, check `df -h /mnt/dspace-data` before uploading.
 - There are **no backups** of either disk. Keep the original recordings until backups exist.
 - Removed or replaced files stay on disk until a cleanup. Run it once in a while (it only removes files no item uses): `docker exec dspace /dspace/bin/dspace cleanup -d -v`.
+
+### Θεατρικά κ.α. (CD + DAT), 25 November 2026
+- Built with `build_saf.py ... overrides-tterlikkas-theatrika.json theatrika saf-theatrika --by-file`. In `--by-file` mode column A is the section (its folder under AUDIO_DIR has the same name) and every new value in column F starts an item; when F is a folder, all its WAVs go into the item and the contents list says which file each part is in ("Αρχείο 1 · 00:00:00 – 00:03:44 · Προσκυνητές"). Names are matched ignoring spaces; "Μ. Ττερλικκάς" is written as "Μιχάλης Ττερλικκάς".
+- 123456789/86 DAT 114 E («Η αγάπη νικητής», 1993), /87 DAT 115 («Οι Αχαρνείς», 1991), /88 Three Islands (3 files). Titles written at import (no GT in the sheet). Map: `import/saf-theatrika-20261125.map`.
+- The file was uploaded as "DAT 114 Ε" with a Greek Ε; renamed to the sheet's Latin "DAT 114 E" before building.
+- The `Περιεχόμενα` Word files from the folders are kept in `import/workbook/theatrika-docs/`; their dates/composers are in each item's cataloguing note.
+- All 5 files checked by md5 on store 3; uploads deleted.
+
+### Τα Μαππουρέικα, 25 November 2026
+- Sent by the user through SwissTransfer and downloaded straight to the server (no scp). The `/dl/<link>` page embeds the file list; `GET /api/1/links/<link>/files/<file>` returns JSON with a signed storage URL to download. 28 WAVs in `Ta Mappoureika 1`, `2`, `3`.
+- The folder names came from a Mac in decomposed Unicode (NFD) and did not match the sheet until renamed to NFC. Check this for any Mac upload.
+- At the user's request all three volumes are **one item**: 123456789/89 (map `import/saf-mappoureika-20261125.map`). Files are named `Ta Mappoureika <n> - <track>.wav`; the contents list is grouped "Μέρος 1/2/3".
+- Built by hand (not `build_saf.py`): metadata for volumes 1–2 from the sheet; volume 3 is not in the sheet, so its Greek titles were written from the Latin filenames and durations read from the WAVs (notes on the item ask for checks). Volume 1's people/place/year (1979) used for the whole item.
+- All 28 files checked by md5 on store 3; downloads deleted.
+
