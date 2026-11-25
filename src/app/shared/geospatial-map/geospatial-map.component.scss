@@ -40,13 +40,7 @@
 
 /* browse */
 .browse-map-container {
-  // Shorter on phones/tablets so the location list below isn't pushed far down
-  height: 500px;
-
-  @media screen and (min-width: map-get($grid-breakpoints, lg)) {
-    height: 800px;
-  }
-
+  height: 800px;
   width: 100%;
   max-height: none;
 }

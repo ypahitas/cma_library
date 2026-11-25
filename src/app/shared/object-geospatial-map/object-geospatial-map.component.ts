@@ -18,7 +18,7 @@ import { hasValue } from '@dspace/shared/utils/empty.util';
 
 import { environment } from '../../../environments/environment';
 import { fadeIn } from '../animations/fade';
-import { GeospatialMapComponent } from '../geospatial-map/geospatial-map.component';
+import { CmaGeospatialMapComponent } from '../../../themes/cma/app/shared/geospatial-map/cma-geospatial-map.component'; // CMA hook
 import { GeospatialMapDetail } from '../geospatial-map/models/geospatial-map-detail.model';
 import { parseGeoJsonFromMetadataValue } from '../utils/geospatial.functions';
 
@@ -30,7 +30,7 @@ import { parseGeoJsonFromMetadataValue } from '../utils/geospatial.functions';
   templateUrl: './object-geospatial-map.component.html',
   animations: [fadeIn],
   imports: [
-    GeospatialMapComponent,
+    CmaGeospatialMapComponent, // CMA hook (stock: GeospatialMapComponent)
   ],
 })
 

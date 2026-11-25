@@ -1,35 +1,11 @@
 <div class="container">
   <h1>{{ 'browse.metadata.map' | translate }}</h1>
-  <div class="row">
-    <div class="col-12 col-lg-8">
-      @defer {
-        <ds-geospatial-map [facetValues]="facetValues$"
-                           [currentScope]="this.scope$|async"
-                           [layout]="'browse'"
-                           style="width: 100%;">
-        </ds-geospatial-map>
-      }
-    </div>
-
-    @if (locations$ | async; as locations) {
-      @if (locations.length > 0) {
-        <section class="map-locations col-12 col-lg-4 mt-5 mt-lg-0" data-test="map-locations">
-          <h2>{{ 'browse.metadata.map.locations' | translate }}</h2>
-          <!-- Same markup as the "Ανά Τοποθεσία" browse list (object list + browse entry list element) -->
-          <ul class="list-unstyled map-locations-list">
-            @for (entry of locations; track entry.value; let last = $last) {
-              <li class="mt-4 mb-4 d-flex" [class.border-bottom]="!last">
-                <div class="d-flex flex-row">
-                  <a class="lead" [routerLink]="['/browse', locationBrowseId]"
-                     [queryParams]="getLocationQueryParams(entry, scope$ | async)">{{ entry.value }}</a>
-                  <span class="pe-2">&nbsp;</span>
-                  <span class="badge rounded-pill bg-secondary align-self-center ps-2 pe-2">{{ entry.count }}</span>
-                </div>
-              </li>
-            }
-          </ul>
-        </section>
-      }
-    }
-  </div>
+  @defer {
+    <ds-geospatial-map [facetValues]="facetValues$"
+                       [currentScope]="this.scope$|async"
+                       [layout]="'browse'"
+                       style="width: 100%;">
+    </ds-geospatial-map>
+  }
 </div>
+
