@@ -2,7 +2,11 @@ import {
   AsyncPipe,
   NgClass,
 } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,6 +20,7 @@ import { slideSidebarPadding } from '../../../../app/shared/animations/slide';
 import { LiveRegionComponent } from '../../../../app/shared/live-region/live-region.component';
 import { ThemedLoadingComponent } from '../../../../app/shared/loading/themed-loading.component';
 import { SystemWideAlertBannerComponent } from '../../../../app/system-wide-alert/alert-banner/system-wide-alert-banner.component';
+import { CmaShareTagsService } from './cma-share-tags.service';
 
 @Component({
   selector: 'ds-themed-root',
@@ -39,5 +44,12 @@ import { SystemWideAlertBannerComponent } from '../../../../app/system-wide-aler
     TranslateModule,
   ],
 })
-export class RootComponent extends BaseComponent {
+export class RootComponent extends BaseComponent implements OnInit {
+  // CMA: og:url / og:title / og:description per page, and a title fallback
+  private cmaShareTags = inject(CmaShareTagsService);
+
+  ngOnInit() {
+    super.ngOnInit();
+    this.cmaShareTags.start();
+  }
 }

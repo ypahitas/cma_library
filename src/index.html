@@ -4,7 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <base href="/">
-  <title>DSpace</title>
+  <title>CMA Library</title>
+  <!-- CMA: default share tags (core file edit, see src/themes/cma/README_CMA.MD). Pages rendered on the
+       server update og:title/og:description/og:url per page (src/themes/cma/app/root/cma-share-tags.service.ts);
+       pages excluded from SSR (search, browse, community-list) keep these defaults. -->
+  <meta property="og:site_name" content="Αρχείο Κυπριακής Μουσικής">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CMA Library">
+  <meta property="og:description" content="Ψηφιακή βιβλιοθήκη του Αρχείου Κυπριακής Μουσικής: ηχογραφήσεις, βίντεο και φωτογραφίες κυπριακής παραδοσιακής μουσικής.">
+  <meta property="og:image" content="https://library.cyprusmusicarchive.org/assets/cma/images/og-share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Αρχείο Κυπριακής Μουσικής">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://library.cyprusmusicarchive.org/assets/cma/images/og-share.jpg">
   <meta name="viewport" content="width=device-width,minimum-scale=1">
   <meta http-equiv="cache-control" content="no-store">
 </head>

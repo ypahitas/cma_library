@@ -17,4 +17,7 @@
     - Item titles need to be added in dspace dc.title metadata with the langauage codes 'en','el' etc in each language
     - Keywords(subjects), Author(featured person) and types (interview recording) should be added as i18n keys and translations
 - Configured assetstore.cfg to enable s3 integration 
--For coordinates we need to enter dcterms.spatial metadata as point(long lat)
+-For coordinates we need to enter dcterms.spatial metadata as point(long lat)- Link previews (Facebook/WhatsApp/LinkedIn/X), added 2026-11-25:
+    - CORE FILE EDIT: src/index.html has title "CMA Library" and default og:/twitter: tags (image assets/cma/images/og-share.jpg, 1200x630 AKM logo). It is not themeable and pages excluded from SSR (search, browse, community-list) are served as this bare file, so re-apply these lines after a DSpace upgrade.
+    - Per-page og:title/og:description/og:url come from src/themes/cma/app/root/cma-share-tags.service.ts (mirrors the title/description that core HeadTagService sets; also replaces a leftover "DSpace" title with "CMA Library").
+    - fb:app_id is intentionally not set (only needed for Facebook Insights). After changes, re-scrape in the Facebook Sharing Debugger.
