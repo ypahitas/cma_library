@@ -14,6 +14,7 @@ import { ThemedTopLevelCommunityListComponent } from '../../../../app/home-page/
 import { SuggestionsPopupComponent } from '../../../../app/notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-page/themed-configuration-search-page.component';
 import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/themed-search-form.component';
+import { CmaDecadeChartComponent } from './decade-chart/decade-chart.component';
 
 @Component({
   selector: 'ds-themed-home-page',
@@ -23,6 +24,7 @@ import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/th
   //templateUrl: '../../../../app/home-page/home-page.component.html',
   imports: [
     AsyncPipe,
+    CmaDecadeChartComponent,
     HomeCoarComponent,
     MarkdownViewerComponent,
     NgTemplateOutlet,

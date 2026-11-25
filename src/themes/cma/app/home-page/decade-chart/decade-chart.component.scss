@@ -1,0 +1,114 @@
+// CMA home page "Recordings by decade": quiet bars in the site's green under the search box.
+:host {
+  display: block;
+}
+
+.cma-decades {
+  margin: 2rem 0 1rem;
+}
+
+.cma-decades__heading {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--bs-secondary-color, #6c757d);
+  margin-bottom: 0.75rem;
+}
+
+.cma-decades__bars {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.25rem;
+  border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+.cma-decades__item {
+  flex: 1 1 0;
+  max-width: 5.5rem;
+  min-width: 0;
+}
+
+.cma-decades__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 0.25rem;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: none;
+
+    .cma-decades__bar {
+      background-color: var(--bs-link-hover-color, #4aa094);
+    }
+
+    .cma-decades__count,
+    .cma-decades__label {
+      color: var(--bs-link-hover-color, #4aa094);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--bs-link-color, #72C4B9);
+    outline-offset: 2px;
+  }
+}
+
+.cma-decades__plot {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 7rem;
+}
+
+.cma-decades__count {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--bs-secondary-color, #6c757d);
+  font-variant-numeric: tabular-nums;
+}
+
+.cma-decades__bar {
+  display: block;
+  width: 100%;
+  max-width: 3rem;
+  background-color: var(--bs-link-color, #72C4B9);
+  border-radius: 0.2rem 0.2rem 0 0;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.cma-decades__label {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--bs-body-color, #4E4E4E);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 575.98px) {
+  .cma-decades__bars {
+    gap: 0.25rem;
+  }
+
+  .cma-decades__plot {
+    height: 5rem;
+  }
+
+  .cma-decades__label {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cma-decades__bar {
+    transition: none;
+  }
+}
