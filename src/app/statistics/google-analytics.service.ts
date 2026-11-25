@@ -37,21 +37,6 @@ export class GoogleAnalyticsService {
    * page and starts tracking.
    */
   addTrackingIdToPage(): void {
-    // CMA: let the cookie banner start tracking right after the visitor accepts
-    const win = this.document?.defaultView;
-    if (win) {
-      win.initGoogleAnalytics = () => this.loadTracking();
-    }
-    this.loadTracking();
-  }
-
-  /** Set once the tracking snippet is on the page, so it is never added twice. */
-  private trackingStarted = false;
-
-  private loadTracking(): void {
-    if (this.trackingStarted) {
-      return;
-    }
     const googleKey$ = this.configService.findByPropertyName('google.analytics.key').pipe(
       getFirstCompletedRemoteData(),
     );
@@ -75,11 +60,6 @@ export class GoogleAnalyticsService {
         if (isEmpty(trackingId)) {
           return;
         }
-
-        if (this.trackingStarted) {
-          return;
-        }
-        this.trackingStarted = true;
 
         if (this.isGTagVersion(trackingId)) {
 

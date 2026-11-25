@@ -68,6 +68,8 @@ import { commonAppConfig } from '../../app/app.config';
 import { storeModuleConfig } from '../../app/app.reducer';
 import { MissingTranslationHelper } from '../../app/shared/translate/missing-translation.helper';
 import { GoogleAnalyticsService } from '../../app/statistics/google-analytics.service';
+import { CmaBrowserOrejimeService } from '../../themes/cma/app/statistics/cma-browser-orejime.service'; // CMA hook
+import { CmaGoogleAnalyticsService } from '../../themes/cma/app/statistics/cma-google-analytics.service'; // CMA hook
 import { SubmissionService } from '../../app/submission/submission.service';
 import { REQUEST } from '../../express.tokens';
 import { TranslateBrowserLoader } from '../../ngx-translate-loaders/translate-browser.loader';
@@ -127,7 +129,7 @@ export const browserAppConfig: ApplicationConfig = mergeApplicationConfig({
     },
     {
       provide: OrejimeService,
-      useClass: BrowserOrejimeService,
+      useClass: CmaBrowserOrejimeService, // CMA hook (stock: BrowserOrejimeService)
     },
     {
       provide: SubmissionService,
@@ -143,7 +145,7 @@ export const browserAppConfig: ApplicationConfig = mergeApplicationConfig({
     },
     {
       provide: GoogleAnalyticsService,
-      useClass: GoogleAnalyticsService,
+      useClass: CmaGoogleAnalyticsService, // CMA hook (stock: GoogleAnalyticsService)
     },
     {
       provide: Angulartics2GoogleTagManager,

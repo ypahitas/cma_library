@@ -210,12 +210,6 @@ export function getOrejimeConfiguration(_window: NativeWindowRef): any {
         re-enables them due to a consent change by the user.
         */
         onlyOnce: true,
-        // CMA: start tracking as soon as the visitor accepts, not only on the next page load
-        callback: (consent: boolean) => {
-          if (consent) {
-            _window?.nativeWindow?.initGoogleAnalytics?.();
-          }
-        },
       },
       {
         name: CAPTCHA_NAME,
