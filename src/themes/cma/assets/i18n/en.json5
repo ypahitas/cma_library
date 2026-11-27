@@ -1,4 +1,7 @@
 {
+  "cma.media-type.audio": "Audio",
+  "cma.media-type.video": "Video",
+  "cma.media-type.photo": "Photo",
   "cma.home.decades.heading": "Recordings by decade",
   "cma.home.decades.link": "{{from}}–{{to}}: {{count}} items",
   "cma.home.decades.label": "{{start}}s",

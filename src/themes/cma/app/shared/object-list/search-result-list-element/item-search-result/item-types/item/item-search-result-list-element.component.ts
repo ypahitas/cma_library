@@ -8,6 +8,8 @@ import { RouterLink } from '@angular/router';
 import { Context } from '../../../../../../../../../app/core/shared/context.model';
 import { ViewMode } from '../../../../../../../../../app/core/shared/view-mode.model';
 import { ThemedBadgesComponent } from '../../../../../../../../../app/shared/object-collection/shared/badges/themed-badges.component';
+import { ThemedAccessStatusBadgeComponent } from '../../../../../../../../../app/shared/object-collection/shared/badges/access-status-badge/themed-access-status-badge.component';
+import { ThemedStatusBadgeComponent } from '../../../../../../../../../app/shared/object-collection/shared/badges/status-badge/themed-status-badge.component';
 import { ItemSearchResult } from '@dspace/core/shared/object-collection/item-search-result.model';
 import { MetadataDirective } from '../../../../../../../../../app/shared/metadata.directive';
 import { listableObjectComponent } from '../../../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
@@ -36,6 +38,8 @@ import { APP_CONFIG, AppConfig } from 'src/config/app-config.interface';
     NgClass,
     RouterLink,
     ThemedBadgesComponent,
+    ThemedAccessStatusBadgeComponent,
+    ThemedStatusBadgeComponent,
     ThemedThumbnailComponent,
     TruncatableComponent,
     TruncatablePartComponent,
@@ -44,6 +48,16 @@ import { APP_CONFIG, AppConfig } from 'src/config/app-config.interface';
 })
 export class ItemSearchResultListElementComponent extends BaseComponent {
   private currentLang: string;
+
+  /** CMA: media kinds of this item (audio/video/photo), derived from dc.type, in a fixed order */
+  public mediaKinds: string[] = [];
+
+  /** CMA: Font Awesome icon for each media kind */
+  public readonly mediaIcons: { [kind: string]: string } = {
+    audio: 'fas fa-headphones',
+    video: 'fas fa-video',
+    photo: 'fas fa-camera',
+  };
 
   constructor(private truncatableServiceBase: TruncatableService,
                      private dsoNameServiceBase: DSONameService,
@@ -58,6 +72,24 @@ export class ItemSearchResultListElementComponent extends BaseComponent {
     super.ngOnInit();
     // Get current language
     this.dsoTitle = this.getTranslatedTitle();
+    this.mediaKinds = this.getMediaKinds();
+  }
+
+  // CMA: map dc.type values to media kinds, e.g. music.recording -> audio, interview.video -> video, image -> photo
+  public getMediaKinds(): string[] {
+    const types = (this.dso ? this.dso.allMetadataValues('dc.type') : [])
+      .map((t) => (t || '').trim().toLowerCase());
+    const found = new Set<string>();
+    for (const t of types) {
+      if (t === 'audio' || t === 'recording' || t.endsWith('.recording') || t.endsWith('.audio')) {
+        found.add('audio');
+      } else if (t === 'video' || t.endsWith('.video')) {
+        found.add('video');
+      } else if (t === 'image' || t === 'photo' || t.endsWith('.image') || t.endsWith('.photo')) {
+        found.add('photo');
+      }
+    }
+    return ['audio', 'video', 'photo'].filter((k) => found.has(k));
   }
 
   //CMA code because it seems dspace angular is ignoring metadata language codes

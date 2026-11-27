@@ -1,4 +1,7 @@
 {
+  "cma.media-type.audio": "Ses",
+  "cma.media-type.video": "Video",
+  "cma.media-type.photo": "Fotoğraf",
   "cma.home.decades.heading": "On yıllara göre kayıtlar",
   "cma.home.decades.link": "{{from}}–{{to}}: {{count}} öğe",
   "cma.home.decades.label": "{{start}}'ler",

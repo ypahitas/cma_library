@@ -1,4 +1,7 @@
 {
+  "cma.media-type.audio": "Ήχος",
+  "cma.media-type.video": "Βίντεο",
+  "cma.media-type.photo": "Φωτογραφία",
   "cma.home.decades.heading": "Καταγραφές ανά δεκαετία",
   "cma.home.decades.link": "{{from}}–{{to}}: {{count}} τεκμήρια",
   "cma.home.decades.label": "{{start}}–{{short}}",
